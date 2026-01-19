@@ -43,14 +43,14 @@ export default function Header() {
                 <nav className="flex items-center justify-between">
                     <Link
                         href="/"
-                        className="flex items-center gap-2"
+                        className="flex items-center"
                     >
                         <Image
-                            src="/branding/emblem-transparent.png"
-                            alt="OFHM Emblem"
-                            width={48}
+                            src="/branding/ofhm-logo-full.png"
+                            alt="Our Father's Home Ministries"
+                            width={180}
                             height={48}
-                            className="h-12 w-auto object-contain"
+                            className="h-10 md:h-12 w-auto object-contain"
                             priority
                         />
                     </Link>
