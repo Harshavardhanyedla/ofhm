@@ -45,16 +45,14 @@ export default function Header() {
                         href="/"
                         className="flex items-center gap-2"
                     >
-                        <div className="relative h-12 w-12 flex items-center justify-center">
-                            <Image
-                                src="/branding/ofhm-logo-mark.png"
-                                alt="OFHM Emblem"
-                                width={48}
-                                height={48}
-                                className="h-full w-auto object-contain mix-blend-multiply"
-                                priority
-                            />
-                        </div>
+                        <Image
+                            src="/branding/emblem-transparent.png"
+                            alt="OFHM Emblem"
+                            width={48}
+                            height={48}
+                            className="h-12 w-auto object-contain"
+                            priority
+                        />
                     </Link>
 
                     {/* Desktop Navigation */}
