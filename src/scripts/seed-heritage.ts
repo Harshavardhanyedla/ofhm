@@ -13,14 +13,14 @@ const legacyContent = {
     footerSummary: "OUR FATHER'S HOME MINISTRIES, was established in July 2010. The visionary behind this initiative was Gandham Buli Veerraju, who currently serves as its President. Following his graduation from a Theological Seminary, Veeraju was driven by a passionate desire to reach the unreached and to provide training for laymen, dedicating himself to the discipline of in society through the platform of Our Father's Home Ministries.",
     contact: {
         address: {
-            line1: "Pastor Gandham Buli Veerraju",
+            line1: "Pastor Gandham B. V Raju",
             line2: "Nayakampalli Post",
             city: "Peddapuram",
             pin: "533 457",
             state: "Andhra Pradesh",
             country: "INDIA"
         },
-        phone: "+919949430413",
+        phone: "+91 99494 30413",
         email: "ofhmindia@gmail.com"
     },
     impact: {
@@ -50,7 +50,7 @@ const legacyContent = {
         {
             title: "CHURCH PLANTING",
             description: "We are proclaiming the Gospel of Jesus Christ among the Hindu people since 14 years, many were saved by accepting Jesus Christ as their personal Saviour.\n\nTherefore, our Primary goal is to focus on preaching the Gospel of Jesus Christ to reach to unreached souls as we are living in the last days. We are preaching Him in the nook and corner villages, mountain villages and where there is no church not been constructed yet to save the perishing souls for Christ. Because is Harvest plenteous but the Laborers are few. We have to finish His task before the Second coming of Jesus Christ.",
-            scriptureText: ".... my ambition to preach the gospel where Christ was not known...",
+            scriptureText: "…. my ambition to preach the gospel where Christ was not known…",
             scriptureRef: "Romans 15:20",
             image: "/images/church.jpg",
             impactSummary: "Hundreds of Churches we Planted",
@@ -59,7 +59,7 @@ const legacyContent = {
         {
             title: "WIDOW MINISTRY",
             description: "We always taking care to give the food and shelter for the poor and needy widows and elderly aged people those who doesn't care by someone. We are protecting the hundreds of widows and leading them to Christ in their last days of their lives to make them happy.",
-            scriptureText: ".... to look after orphans and widows in their distress and to keep oneself from being polluted by the world.",
+            scriptureText: "…. to look after orphans and widows in their distress and to keep oneself from being polluted by the world.",
             scriptureRef: "James 1:27",
             image: "/images/widow.jpg",
             impactSummary: "Hundreds of Widows care",

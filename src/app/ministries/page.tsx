@@ -29,15 +29,47 @@ export default async function MinistriesPage() {
         image: string;
     }
 
-    const ministries = (ministriesData as unknown as MinistryDoc[]).map((m) => ({
-        id: m._id.toString(),
-        title: m.title,
-        description: m.description,
-        impactSummary: m.impactSummary,
-        scriptureText: m.scriptureText,
-        scriptureRef: m.scriptureRef,
-        image: m.image,
-    }));
+    const fallbackMinistries = [
+        {
+            id: "orphan-home",
+            title: "ORPHAN HOME",
+            description: "We are supporting the poor and needy children those who are street, orphan, semi orphan and destitute children by providing them proper food, shelter and Education to lead them to Christ in the fear of the Lord from their childhood in order to be witnessed to our Lord Jesus Christ",
+            impactSummary: "Thousands of Children we Fed",
+            scriptureText: "Whoever is kind to the poor lends to the LORD and he will reward them for what they have done.",
+            scriptureRef: "Proverbs 19:17",
+            image: "/images/orphan.jpg",
+        },
+        {
+            id: "church-planting",
+            title: "CHURCH PLANTING",
+            description: "We are proclaiming the Gospel of Jesus Christ among the Hindu people since 14 years, many were saved by accepting Jesus Christ as their personal Saviour.\n\nTherefore, our Primary goal is to focus on preaching the Gospel of Jesus Christ to reach to unreached souls as we are living in the last days. We are preaching Him in the nook and corner villages, mountain villages and where there is no church not been constructed yet to save the perishing souls for Christ. Because is Harvest plenteous but the Laborers are few. We have to finish His task before the Second coming of Jesus Christ.",
+            impactSummary: "Hundreds of Churches we Planted",
+            scriptureText: "…. my ambition to preach the gospel where Christ was not known…",
+            scriptureRef: "Romans 15:20",
+            image: "/images/church.jpg",
+        },
+        {
+            id: "widow-ministry",
+            title: "WIDOW MINISTRY",
+            description: "We always taking care to give the food and shelter for the poor and needy widows and elderly aged people those who doesn't care by someone. We are protecting the hundreds of widows and leading them to Christ in their last days of their lives to make them happy.",
+            impactSummary: "Hundreds of Widows care",
+            scriptureText: "…. to look after orphans and widows in their distress and to keep oneself from being polluted by the world.",
+            scriptureRef: "James 1:27",
+            image: "/images/widow.jpg",
+        }
+    ];
+
+    const ministries = ministriesData.length > 0
+        ? (ministriesData as unknown as MinistryDoc[]).map((m) => ({
+            id: m._id.toString(),
+            title: m.title,
+            description: m.description,
+            impactSummary: m.impactSummary,
+            scriptureText: m.scriptureText,
+            scriptureRef: m.scriptureRef,
+            image: m.image,
+        }))
+        : fallbackMinistries;
 
     return (
         <div className="w-full">
