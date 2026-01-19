@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Calendar, User, ArrowRight, Tag } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const blogPosts = [
     {
@@ -106,7 +106,7 @@ export default function BlogPage() {
                                             {post.title}
                                         </h3>
                                         <p className="text-foreground/60 leading-relaxed line-clamp-2 italic font-light">
-                                            "{post.excerpt}"
+                                            &quot;{post.excerpt}&quot;
                                         </p>
                                     </div>
                                 </Link>

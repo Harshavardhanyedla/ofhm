@@ -30,7 +30,7 @@ export default function AdminDashboard() {
             <div className="flex justify-between items-end">
                 <div className="space-y-2">
                     <h1 className="text-4xl font-serif font-bold">Dashboard Overview</h1>
-                    <p className="text-foreground/50">Welcome back, Admin. Here's what's happening with OFHM today.</p>
+                    <p className="text-foreground/50">Welcome back, Admin. Here&apos;s what&apos;s happening with OFHM today.</p>
                 </div>
                 <div className="flex gap-4">
                     <div className="bg-white px-4 py-2 rounded-xl border flex items-center gap-2 text-sm font-medium">
@@ -120,22 +120,21 @@ export default function AdminDashboard() {
                     <h3 className="text-xl font-bold font-serif">Impact Metrics</h3>
                     <div className="space-y-6">
                         {[
-                            { label: "Orphans", value: 254 },
-                            { label: "Widows", value: 120 },
-                            { label: "Children in School", value: 412 },
-                            { label: "Families Relieved", value: 1540 },
+                            { label: "ORPHAN CHILDREN", value: 1500, key: 'orphans' },
+                            { label: "CHURCH PLANTING", value: 150, key: 'churches' },
+                            { label: "MEDICAL CAMPS", value: 750, key: 'medicalCamps' },
+                            { label: "BIBLE TO A NEW SOULS", value: 9700, key: 'bibles' },
                         ].map((metric) => (
                             <div key={metric.label} className="space-y-2">
-                                <div className="flex justify-between items-center text-sm font-bold uppercase tracking-widest text-foreground/40 px-1">
+                                <div className="flex justify-between items-center text-[10px] font-bold uppercase tracking-widest text-foreground/40 px-1">
                                     <span>{metric.label}</span>
                                     <span className="text-primary">{metric.value}</span>
                                 </div>
                                 <div className="relative">
                                     <input
-                                        type="range"
-                                        className="w-full h-2 bg-muted rounded-full appearance-none cursor-pointer accent-primary"
+                                        type="number"
+                                        className="w-full px-4 py-2 bg-muted rounded-xl text-sm font-bold focus:outline-none focus:ring-2 focus:ring-primary/20"
                                         defaultValue={metric.value}
-                                        max={2000}
                                     />
                                 </div>
                             </div>

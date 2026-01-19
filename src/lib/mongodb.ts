@@ -13,8 +13,8 @@ if (!MONGODB_URI) {
  * in development. This prevents connections growing exponentially
  * during API Route usage.
  */
-let globalWithMongoose = global as typeof globalThis & {
-  mongoose: { conn: any; promise: any };
+const globalWithMongoose = global as typeof globalThis & {
+  mongoose: { conn: mongoose.Mongoose | null; promise: Promise<mongoose.Mongoose> | null };
 };
 
 if (!globalWithMongoose.mongoose) {

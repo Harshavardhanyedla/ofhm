@@ -29,7 +29,9 @@ export async function GET() {
                 password: "admin1123 (Please change this in settings after login)"
             }
         });
-    } catch (error: any) {
-        return NextResponse.json({ error: error.message }, { status: 500 });
+    } catch (error) {
+        return NextResponse.json({
+            error: error instanceof Error ? error.message : "Internal Server Error"
+        }, { status: 500 });
     }
 }

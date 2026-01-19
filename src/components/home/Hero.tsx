@@ -1,44 +1,63 @@
+"use client";
+
 import Link from 'next/link';
-import { Heart, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-export default function Hero() {
+interface HeroProps {
+    statements: string[];
+}
+
+export default function Hero({ statements }: HeroProps) {
     return (
-        <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center">
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-neutral-dark/40 backdrop-blur-[2px]" />
-
-            <div className="container relative z-10 mx-auto px-4 md:px-6 text-center">
-                <div className="max-w-3xl mx-auto space-y-8">
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-white leading-tight animate-in fade-in slide-in-from-bottom-8 duration-1000">
-                        Loving God by <span className="italic">Serving Others</span>
-                    </h1>
-
-                    <p className="text-lg md:text-xl text-white/90 font-light max-w-2xl mx-auto leading-relaxed animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-200">
-                        OFHM is a Christian ministry dedicated to providing hope, relief, and spiritual guidance to orphans, widows, and families in need.
-                    </p>
-
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500">
-                        <Link
-                            href="/donate"
-                            className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-primary px-8 py-4 text-base font-medium text-primary-foreground transition-all hover:bg-primary/90 hover:scale-105 active:scale-95 shadow-lg"
-                        >
-                            <Heart className="mr-2 h-5 w-5 fill-current" />
-                            Support Our Mission
-                        </Link>
-                        <Link
-                            href="/about"
-                            className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-8 py-4 text-base font-medium text-white transition-all hover:bg-white/20"
-                        >
-                            Learn More
-                            <ArrowRight className="ml-2 h-5 w-5" />
-                        </Link>
-                    </div>
-                </div>
+        <section className="relative h-screen flex items-center justify-center overflow-hidden">
+            {/* Background with dynamic overlay */}
+            <div className="absolute inset-0 z-0">
+                <div className="absolute inset-0 bg-secondary/40 z-10" />
+                <img
+                    src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=2073&auto=format&fit=crop"
+                    alt="Ministry background"
+                    className="w-full h-full object-cover scale-105"
+                />
             </div>
 
-            {/* Scroll Indicator */}
-            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-                <div className="w-px h-12 bg-gradient-to-b from-white to-transparent" />
+            <div className="container mx-auto px-4 relative z-20 text-center text-white space-y-12">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1 }}
+                    className="space-y-6"
+                >
+                    <div className="flex flex-col gap-4">
+                        {statements.map((statement, idx) => (
+                            <h1 key={idx} className="text-4xl md:text-7xl font-serif font-bold italic opacity-90 first:not-italic first:opacity-100">
+                                &quot;{statement}&quot;
+                            </h1>
+                        ))}
+                    </div>
+                    <p className="max-w-xl mx-auto text-lg md:text-xl font-light text-white/80">
+                        Our Father Home Ministries - Standing as a beacon of hope and a testament to God&apos;s love since 2010.
+                    </p>
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.8 }}
+                    className="flex flex-col md:flex-row gap-6 justify-center"
+                >
+                    <Link
+                        href="/donate"
+                        className="px-10 py-5 bg-white text-secondary rounded-full font-bold text-lg hover:bg-primary hover:text-white transition-all shadow-2xl"
+                    >
+                        Support Our Mission
+                    </Link>
+                    <Link
+                        href="/about"
+                        className={`px-10 py-5 bg-transparent border-2 border-white text-white rounded-full font-bold text-lg hover:bg-white/10 transition-all backdrop-blur-sm`}
+                    >
+                        The Savior&apos;s story
+                    </Link>
+                </motion.div>
             </div>
         </section>
     );

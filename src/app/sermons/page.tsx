@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Search, Play, Volume2, Calendar, User, Tag } from "lucide-react";
+import { Search, Play, Calendar, User, Tag } from "lucide-react";
 import { motion } from "framer-motion";
 
 const categories = ["All", "Grace", "Faith", "Healing", "Evangelism", "Hope"];

@@ -5,6 +5,8 @@ export interface IMinistry extends Document {
     description: string;
     image: string;
     impactSummary: string;
+    scriptureText?: string;
+    scriptureRef?: string;
     order: number;
 }
 
@@ -13,6 +15,8 @@ const MinistrySchema: Schema = new Schema({
     description: { type: String, required: true },
     image: { type: String, required: true },
     impactSummary: { type: String },
+    scriptureText: { type: String },
+    scriptureRef: { type: String },
     order: { type: Number, default: 0 },
 }, { timestamps: true });
 

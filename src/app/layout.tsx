@@ -15,15 +15,46 @@ const crimsonPro = Crimson_Pro({
 });
 
 export const metadata: Metadata = {
-  title: "OFHM | Our Father Home Ministries",
-  description: "Official presence of Our Father Home Ministries - Serving orphans, widows, and the poor.",
+  title: {
+    default: "OFHM | Our Father Home Ministries",
+    template: "%s | OFHM"
+  },
+  description: "Official presence of Our Father Home Ministries. Dedicated to serving orphans, widows, and the poor through Christ-centered care and community empowerment since 2010.",
+  keywords: ["OFHM", "Our Father Home Ministries", "NGO India", "Orphanage India", "Widow Ministry", "Church Planting", "Gandham Buli Veerraju"],
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://ofhm.org",
+    siteName: "Our Father Home Ministries",
+    images: [{
+      url: "/images/founder.jpg",
+      width: 1200,
+      height: 630,
+      alt: "OFHM Founder Pastor Gandham Buli Veerraju"
+    }]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "OFHM | Our Father Home Ministries",
+    description: "Serving the least, the last, and the lost in India.",
+    images: ["/images/founder.jpg"]
+  },
+  icons: {
+    icon: "/favicon.ico",
+  }
 };
 
-export default function RootLayout({
+import dbConnect from "@/lib/mongodb";
+import SiteSettings from "@/models/SiteSettings";
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  await dbConnect();
+  const settings = await SiteSettings.findOne({});
+
   return (
     <html lang="en" className="scroll-smooth">
       <body
@@ -33,7 +64,7 @@ export default function RootLayout({
         <main className="flex-grow pt-20">
           {children}
         </main>
-        <Footer />
+        <Footer settings={settings} />
       </body>
     </html>
   );

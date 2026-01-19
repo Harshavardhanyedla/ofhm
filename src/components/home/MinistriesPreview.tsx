@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Heart, GraduationCap, Users, Church, Utensils } from "lucide-react";
+import { Heart, GraduationCap, Users, Church } from "lucide-react";
 
 const ministries = [
     {

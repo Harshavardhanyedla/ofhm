@@ -35,7 +35,7 @@ export default function ContactPage() {
                     <h2 className="text-sm font-bold uppercase tracking-widest text-primary">Get In Touch</h2>
                     <h1 className="text-4xl md:text-6xl font-serif text-foreground">Contact Us</h1>
                     <p className="text-lg text-foreground/70 font-light leading-relaxed">
-                        Have a question, prayer request, or want to partner with us? We'd love to hear from you.
+                        Have a question, prayer request, or want to partner with us? We&apos;d love to hear from you.
                     </p>
                 </div>
             </section>
@@ -78,7 +78,7 @@ export default function ContactPage() {
                                         Prayer Requests
                                     </div>
                                     <p className="text-sm text-foreground/70 italic">
-                                        "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God." — Philippians 4:6
+                                        &quot;Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God.&quot; — Philippians 4:6
                                     </p>
                                 </div>
                             </div>

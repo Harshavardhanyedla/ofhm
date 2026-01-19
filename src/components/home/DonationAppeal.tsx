@@ -15,7 +15,7 @@ export default function DonationAppeal() {
                             Your Support Makes a <span className="italic text-accent">Real Difference</span>
                         </h2>
                         <p className="text-lg text-white/80 font-light leading-relaxed">
-                            Every donation, no matter the size, helps us provide food, shelter, and education to those who need it most. Join us in being God's hands and feet on earth.
+                            Every donation, no matter the size, helps us provide food, shelter, and education to those who need it most. Join us in being God&apos;s hands and feet on earth.
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-4">
                             <Link

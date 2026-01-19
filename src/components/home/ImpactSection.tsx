@@ -1,16 +1,24 @@
 "use client";
 
-import { Users, GraduationCap, Heart, Home } from "lucide-react";
+import { Heart, Home, Cross, BookOpen } from "lucide-react";
 import { motion } from "framer-motion";
 
-const stats = [
-    { label: "Orphans Supported", value: "250+", icon: Heart },
-    { label: "Widows Helped", value: "120+", icon: Users },
-    { label: "Children Educated", value: "400+", icon: GraduationCap },
-    { label: "Families Served", value: "1500+", icon: Home },
-];
+interface ImpactProps {
+    stats: {
+        orphans: number;
+        churches: number;
+        medicalCamps: number;
+        bibles: number;
+    }
+}
 
-export default function ImpactSection() {
+export default function ImpactSection({ stats }: ImpactProps) {
+    const displayStats = [
+        { label: "ORPHAN CHILDREN", value: `${stats.orphans}`, icon: Heart, sub: "Thousands of Children we Fed" },
+        { label: "CHURCH PLANTING", value: `${stats.churches}`, icon: Cross, sub: "Hundreds of Churches we Planted" },
+        { label: "MEDICAL CAMPS", value: `${stats.medicalCamps}`, icon: Home, sub: "Thousands- Medical Camps we conducted" },
+        { label: "BIBLE TO A NEW SOULS", value: `${stats.bibles}`, icon: BookOpen, sub: "Thousands of Perishing souls we saved" },
+    ];
     return (
         <section className="py-24 bg-white">
             <div className="container mx-auto px-4 md:px-6">
@@ -19,21 +27,24 @@ export default function ImpactSection() {
                     <p className="text-3xl md:text-4xl font-serif text-foreground">Transforming Lives Through Grace</p>
                 </div>
 
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-                    {stats.map((stat, index) => (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+                    {displayStats.map((stat, index) => (
                         <motion.div
                             key={stat.label}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.1 }}
                             viewport={{ once: true }}
-                            className="text-center space-y-4"
+                            className="text-center space-y-4 group"
                         >
-                            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-muted text-primary mb-2">
-                                <stat.icon className="h-8 w-8" />
+                            <div className="inline-flex items-center justify-center w-20 h-20 rounded-[2rem] bg-muted text-primary mb-2 group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                                <stat.icon className="h-10 w-10" />
                             </div>
-                            <div className="text-4xl md:text-5xl font-serif font-bold text-secondary">{stat.value}</div>
-                            <div className="text-sm text-foreground/60 font-medium uppercase tracking-wide">{stat.label}</div>
+                            <div className="space-y-1">
+                                <div className="text-4xl md:text-5xl font-serif font-bold text-secondary">{stat.value}</div>
+                                <div className="text-xs text-primary font-bold uppercase tracking-[0.2em]">{stat.label}</div>
+                            </div>
+                            <div className="text-sm text-foreground/40 italic font-light max-w-[200px] mx-auto leading-tight">{stat.sub}</div>
                         </motion.div>
                     ))}
                 </div>

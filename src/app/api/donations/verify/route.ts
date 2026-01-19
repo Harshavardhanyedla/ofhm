@@ -28,8 +28,10 @@ export async function POST(req: Request) {
         } else {
             return NextResponse.json({ success: false, error: "Invalid signature" }, { status: 400 });
         }
-    } catch (error: any) {
+    } catch (error) {
         console.error("Razorpay Verification Error:", error);
-        return NextResponse.json({ error: error.message }, { status: 500 });
+        return NextResponse.json({
+            error: error instanceof Error ? error.message : "Internal Server Error"
+        }, { status: 500 });
     }
 }

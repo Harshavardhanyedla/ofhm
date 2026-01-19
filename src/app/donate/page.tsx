@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { Heart, ShieldCheck, IndianRupee, Globe, CheckCircle2 } from "lucide-react";
+import { ShieldCheck, IndianRupee, Globe, CheckCircle2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 
@@ -148,7 +148,7 @@ function DonateContent() {
                                     >
                                         <div className="space-y-4">
                                             <h3 className="text-2xl font-serif">Your Information</h3>
-                                            <p className="text-foreground/50 text-sm">We'll use this to send your receipt and impact updates.</p>
+                                            <p className="text-foreground/50 text-sm">We&apos;ll use this to send your receipt and impact updates.</p>
                                         </div>
 
                                         <div className="space-y-4">

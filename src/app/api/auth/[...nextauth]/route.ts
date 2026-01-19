@@ -33,6 +33,7 @@ export const authOptions = {
             },
         }),
     ],
+    /* eslint-disable @typescript-eslint/no-explicit-any */
     callbacks: {
         async jwt({ token, user }: { token: any, user: any }) {
             if (user) {
@@ -47,6 +48,7 @@ export const authOptions = {
             return session;
         },
     },
+    /* eslint-enable @typescript-eslint/no-explicit-any */
     pages: {
         signIn: "/admin/login",
     },

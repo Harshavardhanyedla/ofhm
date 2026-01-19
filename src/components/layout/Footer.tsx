@@ -1,7 +1,40 @@
 import Link from 'next/link';
 import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Youtube } from 'lucide-react';
 
-export default function Footer() {
+interface FooterProps {
+    settings?: {
+        heroStatements: string[];
+        footerSummary: string;
+        contact: {
+            address: {
+                line1: string;
+                line2: string;
+                city: string;
+                pin: string;
+                state: string;
+                country: string;
+            };
+            phone: string;
+            email: string;
+        };
+    };
+}
+
+export default function Footer({ settings }: FooterProps) {
+    const summary = settings?.footerSummary || "Our Father Home Ministries is dedicated to serving the spiritual and humanitarian needs of orphans, widows, and the poor, following the footsteps of Christ.";
+    const contact = settings?.contact || {
+        address: {
+            line1: "123 Ministry Lane",
+            line2: "Faith City",
+            city: "Zion State",
+            pin: "560001",
+            state: "",
+            country: ""
+        },
+        phone: "+91 98765 43210",
+        email: "info@ofhm.org"
+    };
+
     return (
         <footer className="bg-muted pt-16 pb-8 border-t">
             <div className="container mx-auto px-4 md:px-6">
@@ -9,8 +42,8 @@ export default function Footer() {
                     {/* About OFHM */}
                     <div className="space-y-4">
                         <h3 className="text-xl font-serif font-bold text-primary">OFHM</h3>
-                        <p className="text-sm text-foreground/70 leading-relaxed">
-                            Our Father Home Ministries is dedicated to serving the spiritual and humanitarian needs of orphans, widows, and the poor, following the footsteps of Christ.
+                        <p className="text-sm text-foreground/70 leading-relaxed italic">
+                            {summary}
                         </p>
                         <div className="flex space-x-4">
                             <Link href="#" className="text-foreground/50 hover:text-primary transition-colors">
@@ -62,15 +95,20 @@ export default function Footer() {
                         <ul className="space-y-3">
                             <li className="flex items-start text-sm text-foreground/70">
                                 <MapPin className="h-4 w-4 mr-3 mt-1 text-primary shrink-0" />
-                                <span>123 Ministry Lane, Faith City,<br />Zion State, 560001</span>
+                                <span>
+                                    {contact.address.line1}<br />
+                                    {contact.address.line2}<br />
+                                    {contact.address.city}-{contact.address.pin}<br />
+                                    {contact.address.state}, {contact.address.country}
+                                </span>
                             </li>
                             <li className="flex items-center text-sm text-foreground/70">
                                 <Phone className="h-4 w-4 mr-3 text-primary shrink-0" />
-                                <span>+91 98765 43210</span>
+                                <span>{contact.phone}</span>
                             </li>
                             <li className="flex items-center text-sm text-foreground/70">
                                 <Mail className="h-4 w-4 mr-3 text-primary shrink-0" />
-                                <span>info@ofhm.org</span>
+                                <span className="break-all">{contact.email}</span>
                             </li>
                         </ul>
                     </div>

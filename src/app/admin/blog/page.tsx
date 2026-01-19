@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Plus, Search, Edit, Trash2, FileText, Globe } from "lucide-react";
+import { Plus, Search, Edit, Trash2 } from "lucide-react";
 
 export default function AdminBlogPage() {
     const [searchTerm, setSearchTerm] = useState("");
@@ -45,7 +45,7 @@ export default function AdminBlogPage() {
                                     <span className="text-[10px] text-foreground/30 font-bold uppercase tracking-widest">May 15, 2024</span>
                                 </div>
                                 <h3 className="text-xl font-bold font-serif text-secondary group-hover:text-primary transition-colors">10 Ways to Serve Your Community This Season</h3>
-                                <p className="text-sm text-foreground/40 line-clamp-1 italic font-light">"Discover simple yet impactful ways to be a blessing to those around you through acts..."</p>
+                                <p className="text-sm text-foreground/40 line-clamp-1 italic font-light">&quot;Discover simple yet impactful ways to be a blessing to those around you through acts...&quot;</p>
                             </div>
                             <div className="flex gap-2">
                                 <button className="flex items-center gap-2 px-4 py-2 border rounded-xl text-sm font-medium hover:bg-muted transition-colors">
