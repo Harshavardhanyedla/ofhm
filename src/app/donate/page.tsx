@@ -230,8 +230,49 @@ function DonateContent() {
                                                     Pay Securely with Razorpay
                                                 </button>
                                             ) : (
-                                                <PayPalScriptProvider options={{ clientId: "test" }}>
-                                                    <PayPalButtons style={{ layout: "vertical", shape: "pill" }} />
+                                                <PayPalScriptProvider options={{
+                                                    clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "test",
+                                                    currency: "USD"
+                                                }}>
+                                                    <PayPalButtons
+                                                        style={{ layout: "vertical", shape: "pill" }}
+                                                        createOrder={(data, actions) => {
+                                                            // Convert INR to USD for PayPal (Approx 1 INR = 0.012 USD)
+                                                            const usdAmount = (Number(amount) * 0.012).toFixed(2);
+                                                            return actions.order.create({
+                                                                intent: "CAPTURE",
+                                                                purchase_units: [
+                                                                    {
+                                                                        amount: {
+                                                                            currency_code: "USD",
+                                                                            value: usdAmount,
+                                                                        },
+                                                                        description: `Donation to OFHM - ${funds.find(f => f.id === selectedFund)?.name}`,
+                                                                    },
+                                                                ],
+                                                            });
+                                                        }}
+                                                        onApprove={async (data, actions) => {
+                                                            if (actions.order) {
+                                                                const details = await actions.order.capture();
+                                                                try {
+                                                                    await fetch("/api/donations/paypal", {
+                                                                        method: "POST",
+                                                                        headers: { "Content-Type": "application/json" },
+                                                                        body: JSON.stringify({
+                                                                            orderId: data.orderID,
+                                                                            details: details,
+                                                                            fund: selectedFund
+                                                                        }),
+                                                                    });
+                                                                    setStep(4);
+                                                                } catch (error) {
+                                                                    console.error("Error saving donation:", error);
+                                                                    setStep(4); // Still show success UI but log error
+                                                                }
+                                                            }
+                                                        }}
+                                                    />
                                                 </PayPalScriptProvider>
                                             )}
                                         </div>
@@ -246,6 +287,32 @@ function DonateContent() {
                                             className="w-full text-sm text-foreground/40 hover:text-primary transition-colors py-2"
                                         >
                                             Change Details
+                                        </button>
+                                    </motion.div>
+                                )}
+
+                                {step === 4 && (
+                                    <motion.div
+                                        key="step4"
+                                        initial={{ opacity: 0, scale: 0.95 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        className="text-center space-y-8 py-8"
+                                    >
+                                        <div className="mx-auto w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center">
+                                            <CheckCircle2 className="h-12 w-12 text-primary" />
+                                        </div>
+                                        <div className="space-y-4">
+                                            <h3 className="text-3xl font-serif">Thank You, {donorInfo.name}!</h3>
+                                            <p className="text-foreground/60 leading-relaxed">
+                                                Your generous contribution has been received. A receipt has been sent to <strong>{donorInfo.email}</strong>.
+                                                Together, we are making a difference in the lives of those we serve.
+                                            </p>
+                                        </div>
+                                        <button
+                                            onClick={() => window.location.href = "/"}
+                                            className="w-full py-5 bg-primary text-primary-foreground rounded-full text-lg font-medium shadow-xl shadow-primary/20"
+                                        >
+                                            Return Home
                                         </button>
                                     </motion.div>
                                 )}
