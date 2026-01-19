@@ -23,10 +23,10 @@ export default async function Home() {
   // Fallback data if DB is not seeded yet or connection fails
   const heroStatements = settings?.heroStatements || ["There is no other way except God."];
   const stats = impactData || {
-    orphans: 0,
-    churches: 0,
-    medicalCamps: 0,
-    bibles: 0
+    orphans: 1500,
+    churches: 150,
+    medicalCamps: 750,
+    bibles: 9700
   };
 
   return (

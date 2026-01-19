@@ -47,7 +47,7 @@ export default async function AboutPage() {
             <section className="py-24">
                 <div className="container mx-auto px-4 md:px-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-                        <div className="space-y-8">
+                        <div className="space-y-12">
                             <div className="space-y-6">
                                 <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-primary">{founder.title}</h2>
                                 <h3 className="text-4xl font-serif leading-tight">A Visionary Journey <br /><span className="italic font-light">Since 1994</span></h3>
@@ -55,19 +55,18 @@ export default async function AboutPage() {
                                     {founder.familyHistory}
                                 </p>
                             </div>
-                        </div>
-                        <div className="flex flex-col gap-8">
-                            <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden border-8 border-muted p-4 bg-white shadow-2xl">
-                                <img
-                                    src={founder.image}
-                                    alt={founder.name}
-                                    className="object-cover w-full h-full rounded-[2rem]"
-                                />
-                            </div>
-                            <div className="text-center md:text-left space-y-1">
+
+                            <div className="pt-8 border-t border-muted/50 space-y-1">
                                 <p className="text-3xl font-serif font-bold text-secondary">Pastor {founder.name}</p>
                                 <p className="text-primary font-bold uppercase tracking-widest text-xs">{founder.role} of OFHM India</p>
                             </div>
+                        </div>
+                        <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden border-8 border-muted p-4 bg-white shadow-2xl">
+                            <img
+                                src={founder.image}
+                                alt={founder.name}
+                                className="object-cover w-full h-full rounded-[2rem]"
+                            />
                         </div>
                     </div>
                 </div>
