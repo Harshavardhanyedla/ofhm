@@ -3,13 +3,17 @@ import Razorpay from "razorpay";
 import dbConnect from "@/lib/mongodb";
 import Donation from "@/models/Donation";
 
-const razorpay = new Razorpay({
-    key_id: process.env.RAZORPAY_KEY_ID!,
-    key_secret: process.env.RAZORPAY_KEY_SECRET!,
-});
-
 export async function POST(req: Request) {
     try {
+        if (!process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_KEY_SECRET) {
+            return NextResponse.json({ error: "Razorpay credentials not configured" }, { status: 500 });
+        }
+
+        const razorpay = new Razorpay({
+            key_id: process.env.RAZORPAY_KEY_ID,
+            key_secret: process.env.RAZORPAY_KEY_SECRET,
+        });
+
         const { amount, fund, donorInfo } = await req.json();
 
         await dbConnect();
