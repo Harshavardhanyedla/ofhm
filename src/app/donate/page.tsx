@@ -14,7 +14,9 @@ const funds = [
     { id: "education", name: "Education Mission" },
 ];
 
-export default function DonatePage() {
+import { Suspense } from "react";
+
+function DonateContent() {
     const searchParams = useSearchParams();
     const initialFund = searchParams.get("fund") || "general";
 
@@ -253,5 +255,17 @@ export default function DonatePage() {
                 </div>
             </section>
         </div>
+    );
+}
+
+export default function DonatePage() {
+    return (
+        <Suspense fallback={
+            <div className="w-full py-24 text-center">
+                <p className="text-foreground/50">Loading donation form...</p>
+            </div>
+        }>
+            <DonateContent />
+        </Suspense>
     );
 }
