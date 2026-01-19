@@ -27,7 +27,7 @@ export default async function Home() {
     orphans: 1500,
     churches: 150,
     medicalCamps: 750,
-    bibles: 9700
+    bibles: 12000
   };
 
   return (

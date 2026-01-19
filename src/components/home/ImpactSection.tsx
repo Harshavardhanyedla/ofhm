@@ -14,10 +14,10 @@ interface ImpactProps {
 
 export default function ImpactSection({ stats }: ImpactProps) {
     const displayStats = [
-        { label: "ORPHAN CHILDREN", value: `${stats.orphans}`, icon: Heart, sub: "Thousands of Children we Fed" },
-        { label: "CHURCH PLANTING", value: `${stats.churches}`, icon: Cross, sub: "Hundreds of Churches we Planted" },
-        { label: "MEDICAL CAMPS", value: `${stats.medicalCamps}`, icon: Home, sub: "Thousands- Medical Camps we conducted" },
-        { label: "BIBLE TO A NEW SOULS", value: `${stats.bibles}`, icon: BookOpen, sub: "Thousands of Perishing souls we saved" },
+        { label: "ORPHAN CHILDREN", value: `${stats.orphans}+`, icon: Heart, sub: "Thousands of Children we Fed" },
+        { label: "CHURCH PLANTING", value: `${stats.churches}+`, icon: Cross, sub: "Hundreds of Churches we Planted" },
+        { label: "MEDICAL CAMPS", value: `${stats.medicalCamps}+`, icon: Home, sub: "Thousands- Medical Camps we conducted" },
+        { label: "BIBLE TO A NEW SOULS", value: `${stats.bibles}+`, icon: BookOpen, sub: "Thousands of Perishing souls we saved" },
     ];
     return (
         <section id="impact" className="py-24 bg-white">
