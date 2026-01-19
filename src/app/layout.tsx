@@ -47,6 +47,8 @@ export const metadata: Metadata = {
 import dbConnect from "@/lib/mongodb";
 import SiteSettings from "@/models/SiteSettings";
 
+export const dynamic = "force-dynamic";
+
 export default async function RootLayout({
   children,
 }: Readonly<{
