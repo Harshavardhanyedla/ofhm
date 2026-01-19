@@ -56,12 +56,18 @@ export default async function AboutPage() {
                                 </p>
                             </div>
                         </div>
-                        <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden border-8 border-muted p-4 bg-white shadow-2xl">
-                            <img
-                                src={founder.image}
-                                alt={founder.name}
-                                className="object-cover w-full h-full rounded-[2rem]"
-                            />
+                        <div className="flex flex-col gap-8">
+                            <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden border-8 border-muted p-4 bg-white shadow-2xl">
+                                <img
+                                    src={founder.image}
+                                    alt={founder.name}
+                                    className="object-cover w-full h-full rounded-[2rem]"
+                                />
+                            </div>
+                            <div className="text-center md:text-left space-y-1">
+                                <p className="text-3xl font-serif font-bold text-secondary">Pastor {founder.name}</p>
+                                <p className="text-primary font-bold uppercase tracking-widest text-xs">{founder.role} of OFHM India</p>
+                            </div>
                         </div>
                     </div>
                 </div>
