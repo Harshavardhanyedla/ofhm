@@ -9,12 +9,18 @@ import DonationAppeal from "@/components/home/DonationAppeal";
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  await dbConnect();
+  let settings = null;
+  let impactData = null;
 
-  const settings = await SiteSettings.findOne({});
-  const impactData = await Impact.findOne({});
+  try {
+    await dbConnect();
+    settings = await SiteSettings.findOne({});
+    impactData = await Impact.findOne({});
+  } catch (error) {
+    console.error("Database connection error on Home page:", error);
+  }
 
-  // Fallback data if DB is not seeded yet
+  // Fallback data if DB is not seeded yet or connection fails
   const heroStatements = settings?.heroStatements || ["There is no other way except God."];
   const stats = impactData || {
     orphans: 0,

@@ -11,8 +11,13 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 export default async function MinistriesPage() {
-    await dbConnect();
-    const ministriesData = await Ministry.find({}).sort({ order: 1 });
+    let ministriesData = [];
+    try {
+        await dbConnect();
+        ministriesData = await Ministry.find({}).sort({ order: 1 });
+    } catch (error) {
+        console.error("Database connection error on Ministries page:", error);
+    }
 
     interface MinistryDoc {
         _id: { toString: () => string };

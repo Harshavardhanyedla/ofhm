@@ -11,8 +11,13 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 export default async function AboutPage() {
-    await dbConnect();
-    const founderData = await Founder.findOne({});
+    let founderData = null;
+    try {
+        await dbConnect();
+        founderData = await Founder.findOne({});
+    } catch (error) {
+        console.error("Database connection error on About page:", error);
+    }
 
     const founder = founderData || {
         title: "PRESIDENT'S FAMILY",

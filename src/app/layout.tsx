@@ -54,8 +54,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  await dbConnect();
-  const settings = await SiteSettings.findOne({});
+  let settings = null;
+  try {
+    await dbConnect();
+    settings = await SiteSettings.findOne({});
+  } catch (error) {
+    console.error("Database connection error in RootLayout:", error);
+  }
 
   return (
     <html lang="en" className="scroll-smooth">
