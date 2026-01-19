@@ -6,6 +6,8 @@ import ImpactSection from "@/components/home/ImpactSection";
 import MinistriesPreview from "@/components/home/MinistriesPreview";
 import DonationAppeal from "@/components/home/DonationAppeal";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   await dbConnect();
 

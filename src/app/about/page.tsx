@@ -8,6 +8,8 @@ export const metadata: Metadata = {
     description: "Learn about the history of OFHM, the vision of Pastor Gandham Buli Veerraju, and our decades-long commitment to serving the marginalized communities in India.",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function AboutPage() {
     await dbConnect();
     const founderData = await Founder.findOne({});

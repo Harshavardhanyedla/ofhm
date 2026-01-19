@@ -8,6 +8,8 @@ export const metadata: Metadata = {
     description: "Explore the core initiatives of OFHM including Orphan Care, Widow Support, and Church Planting. See how we proclaim the Gospel through dedicated service.",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function MinistriesPage() {
     await dbConnect();
     const ministriesData = await Ministry.find({}).sort({ order: 1 });
