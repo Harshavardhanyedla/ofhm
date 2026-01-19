@@ -18,12 +18,13 @@ async function getActivity(slug: string) {
     }
 }
 
-export default async function ActivityDetailPage({ params }: { params: { slug: string } }) {
-    const activity = await getActivity(params.slug);
+export default async function ActivityDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
+    const activity = await getActivity(slug);
 
     if (!activity) {
         // Simple fallback for the 3 main activities if DB is not seeded
-        if (params.slug === "orphan-care") {
+        if (slug === "orphan-care") {
             return <ActivityContent activity={{
                 title: "Orphan Care",
                 fullDescription: "Since 1994, OFHM has been a sanctuary for children who have lost their parents. We provide more than just a roof; we provide a family, quality education, and spiritual grounding to help these children grow into purpose-filled adults.",

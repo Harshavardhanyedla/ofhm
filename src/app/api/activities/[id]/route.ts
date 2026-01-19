@@ -5,11 +5,11 @@ import mongoose from "mongoose";
 
 export async function GET(
     req: Request,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         await dbConnect();
-        const { id } = params;
+        const { id } = await params;
 
         let activity;
         if (mongoose.Types.ObjectId.isValid(id)) {
@@ -30,11 +30,11 @@ export async function GET(
 
 export async function PUT(
     req: Request,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         await dbConnect();
-        const { id } = params;
+        const { id } = await params;
         const data = await req.json();
 
         const activity = await Activity.findByIdAndUpdate(id, data, { new: true });
@@ -51,11 +51,11 @@ export async function PUT(
 
 export async function DELETE(
     req: Request,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         await dbConnect();
-        const { id } = params;
+        const { id } = await params;
 
         const activity = await Activity.findByIdAndDelete(id);
 
