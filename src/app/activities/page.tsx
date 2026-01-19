@@ -71,7 +71,19 @@ const fallbackActivities = [
 
 export default async function ActivitiesPage() {
     const dbActivities = await getActivities();
-    const activities = dbActivities.length > 0 ? dbActivities : fallbackActivities;
+
+    // Merge logic: Use DB activity if it exists, otherwise use fallback
+    const activities = fallbackActivities.map(fallback => {
+        const dbVersion = dbActivities.find((db: any) => db.slug === fallback.slug);
+        return dbVersion || fallback;
+    });
+
+    // Also include any extra activities from DB that aren't in fallback list
+    const extraActivities = dbActivities.filter((db: any) =>
+        !fallbackActivities.some(fb => fb.slug === db.slug)
+    );
+
+    const finalActivities = [...activities, ...extraActivities];
 
     return (
         <div className="w-full">
@@ -93,7 +105,7 @@ export default async function ActivitiesPage() {
             <section className="py-24 pt-12">
                 <div className="container mx-auto px-4 md:px-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {activities.map((activity: any) => (
+                        {finalActivities.map((activity: any) => (
                             <div key={activity.slug} className="group flex flex-col bg-white rounded-[2.5rem] overflow-hidden border border-muted shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
                                 <div className="relative aspect-[16/10] overflow-hidden">
                                     <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-500 z-10" />

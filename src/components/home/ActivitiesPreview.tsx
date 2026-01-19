@@ -4,8 +4,26 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Heart } from "lucide-react";
 
+const fallbackFeatured = [
+    {
+        title: "Orphan Care",
+        slug: "orphan-care",
+        shortDescription: "Providing a loving home, education, and spiritual guidance to children since 1994.",
+    },
+    {
+        title: "Old Age & Homeless Widows Care",
+        slug: "widow-care",
+        shortDescription: "Restoring dignity and providing shelter, food, and medical care to elderly widows.",
+    },
+    {
+        title: "Borewell Projects",
+        slug: "borewell-projects",
+        shortDescription: "Bringing clean drinking water to remote villages through sustainable borewells.",
+    }
+];
+
 export default function ActivitiesPreview() {
-    const [activities, setActivities] = useState([]);
+    const [activities, setActivities] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -13,9 +31,16 @@ export default function ActivitiesPreview() {
             try {
                 const res = await fetch("/api/activities?featured=true");
                 const data = await res.json();
-                setActivities(data.slice(0, 6));
+
+                if (data && data.length > 0) {
+                    // Merge logic for preview: Use data if featured, otherwise cap it
+                    setActivities(data.slice(0, 6));
+                } else {
+                    setActivities(fallbackFeatured);
+                }
             } catch (error) {
                 console.error("Error fetching activities for preview:", error);
+                setActivities(fallbackFeatured);
             } finally {
                 setLoading(false);
             }
