@@ -14,6 +14,7 @@ import {
     Target
 } from "lucide-react";
 import { signOut } from "next-auth/react";
+import Image from "next/image";
 
 const sidebarItems = [
     { name: "Overview", href: "/admin/dashboard", icon: LayoutDashboard },
@@ -31,9 +32,13 @@ export default function AdminSidebar() {
     return (
         <aside className="w-72 bg-white border-r min-h-screen p-8 flex flex-col gap-12 sticky top-0 h-screen">
             <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white font-serif font-bold text-xl shadow-lg shadow-primary/20">
-                    O
-                </div>
+                <Image
+                    src="/branding/ofhm-logo-mark.png"
+                    alt="OFHM Logo"
+                    width={40}
+                    height={40}
+                    className="h-10 w-auto object-contain"
+                />
                 <div>
                     <h2 className="font-serif font-bold text-lg leading-tight">OFHM Admin</h2>
                     <p className="text-[10px] uppercase tracking-widest text-foreground/40 font-bold">Dashboard v1.0</p>

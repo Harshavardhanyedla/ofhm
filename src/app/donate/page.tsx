@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { ShieldCheck, IndianRupee, Globe, CheckCircle2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -103,6 +104,16 @@ function DonateContent() {
                                     {step > s ? <CheckCircle2 className="h-6 w-6" /> : s}
                                 </div>
                             ))}
+                        </div>
+
+                        <div className="flex justify-center mb-8">
+                            <Image
+                                src="/branding/ofhm-logo-mark.png"
+                                alt="OFHM Trust Logo"
+                                width={80}
+                                height={80}
+                                className="h-20 w-auto object-contain opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                            />
                         </div>
 
                         <div className="bg-white p-8 md:p-12 rounded-[3rem] shadow-2xl shadow-primary/10 border border-border/50">

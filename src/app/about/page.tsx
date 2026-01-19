@@ -2,6 +2,7 @@ import { Mail } from 'lucide-react';
 import dbConnect from "@/lib/mongodb";
 import Founder from "@/models/Founder";
 import type { Metadata } from 'next';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
     title: "Our Story & Heritage",
@@ -46,6 +47,15 @@ export default async function AboutPage() {
             {/* President's Family / History */}
             <section className="py-24">
                 <div className="container mx-auto px-4 md:px-6">
+                    <div className="mb-12">
+                        <Image
+                            src="/branding/ofhm-logo-full.png"
+                            alt="Our Father's Home Ministries"
+                            width={300}
+                            height={90}
+                            className="h-20 w-auto object-contain"
+                        />
+                    </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                         <div className="space-y-12">
                             <div className="space-y-6">

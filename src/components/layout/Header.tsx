@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, Heart } from 'lucide-react';
+import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
 const navItems = [
@@ -42,9 +43,16 @@ export default function Header() {
                 <nav className="flex items-center justify-between">
                     <Link
                         href="/"
-                        className="text-2xl font-serif font-bold tracking-tight text-primary"
+                        className="flex items-center"
                     >
-                        OFHM
+                        <Image
+                            src="/branding/ofhm-logo-mark.png"
+                            alt="Our Father's Home Ministries Logo"
+                            width={40}
+                            height={40}
+                            className="h-10 w-auto object-contain"
+                            priority
+                        />
                     </Link>
 
                     {/* Desktop Navigation */}

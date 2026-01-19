@@ -1,6 +1,7 @@
 "use client";
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 interface HeroProps {
@@ -25,8 +26,16 @@ export default function Hero({ statements }: HeroProps) {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1 }}
-                    className="space-y-6"
+                    className="space-y-8"
                 >
+                    <Image
+                        src="/branding/ofhm-logo-full.png"
+                        alt="Our Father's Home Ministries Logo"
+                        width={400}
+                        height={120}
+                        className="mx-auto h-24 md:h-32 w-auto object-contain mb-8 filter brightness-0 invert"
+                        priority
+                    />
                     <div className="flex flex-col gap-4">
                         {statements.map((statement, idx) => (
                             <h1 key={idx} className="text-4xl md:text-7xl font-serif font-bold italic opacity-90 first:not-italic first:opacity-100">

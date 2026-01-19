@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Youtube } from 'lucide-react';
 
 interface FooterProps {
@@ -40,8 +41,23 @@ export default function Footer({ settings }: FooterProps) {
             <div className="container mx-auto px-4 md:px-6">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                     {/* About OFHM */}
-                    <div className="space-y-4">
-                        <h3 className="text-xl font-serif font-bold text-primary">OFHM</h3>
+                    <div className="space-y-6">
+                        <div className="space-y-4">
+                            <Image
+                                src="/branding/ofhm-logo-mark.png"
+                                alt="OFHM Emblem"
+                                width={60}
+                                height={60}
+                                className="h-14 w-auto object-contain"
+                            />
+                            <Image
+                                src="/branding/ofhm-logo-full.png"
+                                alt="OFHM Full Logo"
+                                width={180}
+                                height={54}
+                                className="h-10 w-auto object-contain opacity-80"
+                            />
+                        </div>
                         <p className="text-sm text-foreground/70 leading-relaxed italic">
                             {summary}
                         </p>
