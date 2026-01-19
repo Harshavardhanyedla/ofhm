@@ -33,7 +33,7 @@ const ministries = [
 
 export default function MinistriesPreview() {
     return (
-        <section className="py-24 bg-muted/30">
+        <section id="ministries" className="py-24 bg-muted/30">
             <div className="container mx-auto px-4 md:px-6">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                     <div className="space-y-4 max-w-2xl">

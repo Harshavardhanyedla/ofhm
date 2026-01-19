@@ -20,7 +20,7 @@ export default function ImpactSection({ stats }: ImpactProps) {
         { label: "BIBLE TO A NEW SOULS", value: `${stats.bibles}`, icon: BookOpen, sub: "Thousands of Perishing souls we saved" },
     ];
     return (
-        <section className="py-24 bg-white">
+        <section id="impact" className="py-24 bg-white">
             <div className="container mx-auto px-4 md:px-6">
                 <div className="text-center mb-16 space-y-4">
                     <h2 className="text-sm font-bold uppercase tracking-widest text-primary">Our Impact</h2>

@@ -37,7 +37,13 @@ export default function Header() {
         >
             <div className="container mx-auto px-4 md:px-6">
                 <nav className="flex items-center justify-between">
-                    <Link href="/" className="text-2xl font-serif font-bold tracking-tight text-primary">
+                    <Link
+                        href="/"
+                        className={cn(
+                            "text-2xl font-serif font-bold tracking-tight transition-colors",
+                            !scrolled && pathname === '/' ? "text-white" : "text-primary"
+                        )}
+                    >
                         OFHM
                     </Link>
 
@@ -48,8 +54,10 @@ export default function Header() {
                                 key={item.href}
                                 href={item.href}
                                 className={cn(
-                                    'text-sm font-medium transition-colors hover:text-primary',
-                                    pathname === item.href ? 'text-primary' : 'text-foreground/70'
+                                    'text-sm font-medium transition-colors',
+                                    !scrolled && pathname === '/'
+                                        ? (pathname === item.href ? 'text-white border-b border-white' : 'text-white/80 hover:text-white')
+                                        : (pathname === item.href ? 'text-primary' : 'text-foreground/70 hover:text-primary')
                                 )}
                             >
                                 {item.name}
@@ -57,7 +65,12 @@ export default function Header() {
                         ))}
                         <Link
                             href="/donate"
-                            className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-2 text-sm font-medium text-primary-foreground transition-transform hover:scale-105 active:scale-95 shadow-sm"
+                            className={cn(
+                                "inline-flex items-center justify-center rounded-full px-6 py-2 text-sm font-medium transition-all hover:scale-105 active:scale-95 shadow-sm",
+                                !scrolled && pathname === '/'
+                                    ? "bg-white text-secondary hover:bg-white/90"
+                                    : "bg-primary text-primary-foreground"
+                            )}
                         >
                             <Heart className="mr-2 h-4 w-4" />
                             Donate
@@ -66,7 +79,10 @@ export default function Header() {
 
                     {/* Mobile Menu Button */}
                     <button
-                        className="md:hidden text-foreground p-2"
+                        className={cn(
+                            "md:hidden p-2 transition-colors",
+                            !scrolled && pathname === '/' ? "text-white" : "text-foreground"
+                        )}
                         onClick={() => setIsOpen(!isOpen)}
                         aria-label="Toggle menu"
                     >
@@ -94,7 +110,7 @@ export default function Header() {
                         ))}
                         <Link
                             href="/donate"
-                            className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-lg font-medium text-primary-foreground"
+                            className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-lg font-medium text-primary-foreground"
                             onClick={() => setIsOpen(false)}
                         >
                             <Heart className="mr-2 h-5 w-5" />

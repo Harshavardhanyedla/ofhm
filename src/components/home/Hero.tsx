@@ -47,15 +47,15 @@ export default function Hero({ statements }: HeroProps) {
                 >
                     <Link
                         href="/donate"
-                        className="px-10 py-5 bg-white text-secondary rounded-full font-bold text-lg hover:bg-primary hover:text-white transition-all shadow-2xl"
+                        className="px-10 py-5 bg-white text-secondary rounded-full font-bold text-lg hover:bg-primary hover:text-white transition-all shadow-2xl flex items-center justify-center"
                     >
                         Support Our Mission
                     </Link>
                     <Link
-                        href="/about"
-                        className={`px-10 py-5 bg-transparent border-2 border-white text-white rounded-full font-bold text-lg hover:bg-white/10 transition-all backdrop-blur-sm`}
+                        href="/ministries"
+                        className="px-10 py-5 bg-transparent border-2 border-white text-white rounded-full font-bold text-lg hover:bg-white/10 transition-all backdrop-blur-sm flex items-center justify-center"
                     >
-                        The Savior&apos;s story
+                        View Our Work
                     </Link>
                 </motion.div>
             </div>
