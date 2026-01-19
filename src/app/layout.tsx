@@ -40,8 +40,11 @@ export const metadata: Metadata = {
     images: ["/images/founder.jpg"]
   },
   icons: {
-    icon: "/favicon.png",
-    apple: "/favicon.png",
+    icon: [
+      { url: "/favicon.ico?v=1", sizes: "any" },
+      { url: "/icon.png?v=1", type: "image/png", sizes: "32x32" },
+    ],
+    apple: "/apple-icon.png?v=1",
   }
 };
 
