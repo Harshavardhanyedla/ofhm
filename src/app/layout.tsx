@@ -40,13 +40,8 @@ export const metadata: Metadata = {
     images: ["/images/founder.jpg"]
   },
   icons: {
-    icon: [
-      { url: "/branding/ofhm-logo-mark.png", sizes: "32x32", type: "image/png" },
-      { url: "/branding/ofhm-logo-mark.png", sizes: "16x16", type: "image/png" },
-    ],
-    apple: [
-      { url: "/branding/ofhm-logo-mark.png", sizes: "180x180", type: "image/png" },
-    ],
+    icon: "/branding/ofhm-logo-mark.png",
+    apple: "/branding/ofhm-logo-mark.png",
   }
 };
 

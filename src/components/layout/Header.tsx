@@ -43,14 +43,15 @@ export default function Header() {
                 <nav className="flex items-center justify-between">
                     <Link
                         href="/"
-                        className="flex items-center"
+                        className="flex items-center gap-2"
                     >
-                        <div className="relative h-10 w-10 overflow-hidden rounded-full">
+                        <div className="relative h-12 w-12 flex items-center justify-center">
                             <Image
-                                src="/branding/ofhm-logo-full.png"
-                                alt="Our Father's Home Ministries"
-                                fill
-                                className="object-cover object-left scale-[2.88] transform origin-left"
+                                src="/branding/ofhm-logo-mark.png"
+                                alt="OFHM Emblem"
+                                width={48}
+                                height={48}
+                                className="h-full w-auto object-contain mix-blend-multiply"
                                 priority
                             />
                         </div>

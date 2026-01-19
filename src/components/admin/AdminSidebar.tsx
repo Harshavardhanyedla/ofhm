@@ -32,14 +32,13 @@ export default function AdminSidebar() {
     return (
         <aside className="w-72 bg-white border-r min-h-screen p-8 flex flex-col gap-12 sticky top-0 h-screen">
             <div className="flex items-center gap-3">
-                <div className="relative h-10 w-10 overflow-hidden rounded-lg">
-                    <Image
-                        src="/branding/ofhm-logo-full.png"
-                        alt="OFHM Logo"
-                        fill
-                        className="object-cover object-left scale-[2.88] transform origin-left"
-                    />
-                </div>
+                <Image
+                    src="/branding/ofhm-logo-mark.png"
+                    alt="OFHM Logo"
+                    width={48}
+                    height={48}
+                    className="h-12 w-auto object-contain mix-blend-multiply"
+                />
                 <div>
                     <h2 className="font-serif font-bold text-lg leading-tight">OFHM Admin</h2>
                     <p className="text-[10px] uppercase tracking-widest text-foreground/40 font-bold">Dashboard v1.0</p>
