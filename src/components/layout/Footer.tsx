@@ -21,18 +21,18 @@ interface FooterProps {
 }
 
 export default function Footer({ settings }: FooterProps) {
-    const summary = settings?.footerSummary || "Our Father Home Ministries is dedicated to serving the spiritual and humanitarian needs of orphans, widows, and the poor, following the footsteps of Christ.";
+    const summary = settings?.footerSummary || "OUR FATHER'S HOME MINISTRIES, established in July 2010. Led by Pastor Gandham B. V Raju, we are dedicated to reaching the unreached and serving the marginalized communities in India.";
     const contact = settings?.contact || {
         address: {
-            line1: "123 Ministry Lane",
-            line2: "Faith City",
-            city: "Zion State",
-            pin: "560001",
-            state: "",
-            country: ""
+            line1: "Pastor Gandham B. V Raju",
+            line2: "Nayakampalli Post",
+            city: "Peddapuram",
+            pin: "533 457",
+            state: "Andhra Pradesh",
+            country: "INDIA"
         },
-        phone: "+91 98765 43210",
-        email: "info@ofhm.org"
+        phone: "+91 99494 30413",
+        email: "ofhmindia@gmail.com"
     };
 
     return (

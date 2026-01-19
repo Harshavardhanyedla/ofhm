@@ -21,10 +21,10 @@ export default async function AboutPage() {
 
     const founder = founderData || {
         title: "PRESIDENT'S FAMILY",
-        name: "Gandham Buli Veerraju",
+        name: "Gandham B. V Raju",
         role: "President",
-        familyHistory: "In 2010...",
-        fullTestimony: "I am Pastor...",
+        familyHistory: "In 2010, OUR FATHER'S HOME MINISTRIES was founded by Gandham B. V Raju, who currently holds the position of President. Following the completion of his theological studies and Seminary graduation, Raju cultivated a fervent commitment to reaching out to those who had not yet been reached and providing training for laymen in evangelization. Additionally, he carried a profound sense of responsibility to support the underprivileged and those in need within the community.",
+        fullTestimony: "I am Pastor Gandham B. V Raju, founder of OFHM India, and I am privileged to share my testimony of God's transforming grace.\n\nBorn into a Hindu family, my early life was centered around idol worship as encouraged by my father. Yet, in the quietness of our home, my mother secretly prayed for our family’s salvation. Her faith was tested when a pastor visiting our home was met with my father's anger and threats. However, she persevered in prayer.\n\nYears later, when my father fell gravely ill and faced the fear of death, my mother's faith became our beacon. She prayed for his healing, promising God that if He restored my father, my father would accept Jesus as his Savior. God, in His mercy, answered. My father was healed, accepted Christ, and dedicated my life to His service.\n\nThough I initially resisted this calling, seeking a secular career and even being selected for the police service, the reminders of my parents and the promptings of the Holy Spirit led me to theological college. There, God confirmed His purpose for my life.\n\nToday, I serve as a pastor, blessed with a wonderful family—my wife and our two sons, Joy Lazarus and Vinod. I invite you to partner with OFHM as we spread God’s Kingdom across India. Your support helps us reach the unreached and serve the marginalized in His name.",
         image: "/images/founder.jpg"
     };
 
