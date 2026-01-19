@@ -10,12 +10,14 @@ import {
     Users,
     Settings,
     LogOut,
-    ChevronRight
+    ChevronRight,
+    Target
 } from "lucide-react";
 import { signOut } from "next-auth/react";
 
 const sidebarItems = [
     { name: "Overview", href: "/admin/dashboard", icon: LayoutDashboard },
+    { name: "Activities", href: "/admin/activities", icon: Target },
     { name: "Sermons", href: "/admin/sermons", icon: Mic2 },
     { name: "Blog Posts", href: "/admin/blog", icon: FileText },
     { name: "Ministries", href: "/admin/ministries", icon: HeartHandshake },
@@ -46,8 +48,8 @@ export default function AdminSidebar() {
                             key={item.href}
                             href={item.href}
                             className={`flex items-center justify-between p-4 rounded-2xl transition-all group ${isActive
-                                    ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
-                                    : "text-foreground/60 hover:bg-muted"
+                                ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
+                                : "text-foreground/60 hover:bg-muted"
                                 }`}
                         >
                             <div className="flex items-center gap-4">

@@ -7,21 +7,49 @@ import { motion, AnimatePresence } from "framer-motion";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 const donationAmounts = [500, 1000, 2500, 5000, 10000];
-const funds = [
+const defaultFunds = [
     { id: "general", name: "General Fund" },
     { id: "orphan-care", name: "Orphan Care" },
-    { id: "widow-support", name: "Widow Support" },
-    { id: "education", name: "Education Mission" },
+    { id: "widow-care", name: "Old Age & Homeless Widows Care" },
+    { id: "discipleship-training", name: "Discipleship Training Programs" },
+    { id: "tribal-outreach", name: "Outreach to Unreached Tribal Villages" },
+    { id: "eye-medical-care", name: "Eye Medical Care" },
+    { id: "bible-distribution", name: "Free Bible Distributions" },
+    { id: "borewell-projects", name: "Borewell Projects" },
+    { id: "church-plantation", name: "Church Plantation" },
+    { id: "food-clothes-distribution", name: "Food & Clothes Distribution" },
+    { id: "self-sustainable-projects", name: "Self-Sustainable Projects" },
 ];
 
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 
 function DonateContent() {
     const searchParams = useSearchParams();
     const initialFund = searchParams.get("fund") || "general";
 
     const [amount, setAmount] = useState<number | string>(1000);
+    const [activeFunds, setActiveFunds] = useState(defaultFunds);
     const [selectedFund, setSelectedFund] = useState(initialFund);
+
+    useEffect(() => {
+        const fetchActivities = async () => {
+            try {
+                const res = await fetch("/api/activities");
+                const data = await res.json();
+                if (data && data.length > 0) {
+                    const dynamicFunds = [
+                        { id: "general", name: "General Fund" },
+                        ...data.map((act: any) => ({ id: act.slug, name: act.title }))
+                    ];
+                    setActiveFunds(dynamicFunds);
+                }
+            } catch (error) {
+                console.error("Failed to fetch dynamic funds:", error);
+            }
+        };
+        fetchActivities();
+    }, []);
+
     const [step, setStep] = useState(1);
     const [donorInfo, setDonorInfo] = useState({ name: "", email: "" });
     const [paymentMethod, setPaymentMethod] = useState<"razorpay" | "paypal">("razorpay");
@@ -90,7 +118,7 @@ function DonateContent() {
                                         <div className="space-y-4">
                                             <label className="text-xs font-bold uppercase tracking-widest text-foreground/40">Select Fund</label>
                                             <div className="grid grid-cols-1 gap-3">
-                                                {funds.map((f) => (
+                                                {activeFunds.map((f: any) => (
                                                     <button
                                                         key={f.id}
                                                         onClick={() => setSelectedFund(f.id)}
@@ -202,7 +230,7 @@ function DonateContent() {
                                         <div className="text-center space-y-2">
                                             <p className="text-sm font-bold uppercase tracking-widest text-primary">Summary</p>
                                             <h3 className="text-4xl font-serif text-secondary group">₹{amount}</h3>
-                                            <p className="text-foreground/60">Supporting <span className="text-foreground font-medium">{funds.find(f => f.id === selectedFund)?.name}</span></p>
+                                            <p className="text-foreground/60">Supporting <span className="text-foreground font-medium">{activeFunds.find((f: any) => f.id === selectedFund)?.name}</span></p>
                                         </div>
 
                                         <div className="space-y-6">
@@ -247,7 +275,7 @@ function DonateContent() {
                                                                             currency_code: "USD",
                                                                             value: usdAmount,
                                                                         },
-                                                                        description: `Donation to OFHM - ${funds.find(f => f.id === selectedFund)?.name}`,
+                                                                        description: `Donation to OFHM - ${activeFunds.find((f: any) => f.id === selectedFund)?.name}`,
                                                                     },
                                                                 ],
                                                             });

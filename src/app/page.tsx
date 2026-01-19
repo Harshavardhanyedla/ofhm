@@ -4,6 +4,7 @@ import Impact from "@/models/Impact";
 import Hero from "@/components/home/Hero";
 import ImpactSection from "@/components/home/ImpactSection";
 import MinistriesPreview from "@/components/home/MinistriesPreview";
+import ActivitiesPreview from "@/components/home/ActivitiesPreview";
 import DonationAppeal from "@/components/home/DonationAppeal";
 
 export const dynamic = "force-dynamic";
@@ -34,6 +35,7 @@ export default async function Home() {
       <Hero statements={heroStatements} />
       <ImpactSection stats={stats} />
       <MinistriesPreview />
+      <ActivitiesPreview />
       <DonationAppeal />
     </div>
   );
