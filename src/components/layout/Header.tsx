@@ -45,14 +45,15 @@ export default function Header() {
                         href="/"
                         className="flex items-center"
                     >
-                        <Image
-                            src="/branding/ofhm-logo-mark.png"
-                            alt="Our Father's Home Ministries Logo"
-                            width={40}
-                            height={40}
-                            className="h-10 w-auto object-contain"
-                            priority
-                        />
+                        <div className="relative h-10 w-10 overflow-hidden rounded-full">
+                            <Image
+                                src="/branding/ofhm-logo-full.png"
+                                alt="Our Father's Home Ministries"
+                                fill
+                                className="object-cover object-left scale-[2.88] transform origin-left"
+                                priority
+                            />
+                        </div>
                     </Link>
 
                     {/* Desktop Navigation */}

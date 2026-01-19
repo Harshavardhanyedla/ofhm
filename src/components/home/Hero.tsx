@@ -33,7 +33,7 @@ export default function Hero({ statements }: HeroProps) {
                         alt="Our Father's Home Ministries Logo"
                         width={400}
                         height={120}
-                        className="mx-auto h-24 md:h-32 w-auto object-contain mb-8 filter brightness-0 invert"
+                        className="mx-auto h-24 md:h-32 w-auto object-contain mb-8 filter grayscale(1) invert(1) brightness(1.8) drop-shadow(0 0 1px rgba(255,255,255,0.2))"
                         priority
                     />
                     <div className="flex flex-col gap-4">
