@@ -8,7 +8,7 @@ const activities = [
     { title: "Outreach to Unreached Tribal Villages", slug: "tribal-outreach" },
     { title: "Eye Medical Care", slug: "eye-medical-care" },
     { title: "Free Bible Distributions", slug: "bible-distribution" },
-    { title: "Borewell Projects for Clean Drinking Water", slug: "borewell-projects" },
+    { title: "Borewell Projects", slug: "borewell-projects" },
     { title: "Church Plantation", slug: "church-plantation" },
     { title: "Food & Clothes Distribution", slug: "food-clothes-distribution" },
     { title: "Self-Sustainable Projects", slug: "self-sustainable-projects" },
