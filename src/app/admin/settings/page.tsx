@@ -65,7 +65,7 @@ export default function SettingsPage() {
                             <label className="text-xs font-bold uppercase tracking-widest text-foreground/40 px-1">Email</label>
                             <div className="relative">
                                 <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground/30" />
-                                <input className="w-full pl-12 pr-4 py-3 bg-muted rounded-xl text-sm font-medium" defaultValue="ofhmindia@gmail.com" />
+                                <input className="w-full pl-12 pr-4 py-3 bg-muted rounded-xl text-sm font-medium" defaultValue="contact@ofhm.org" />
                             </div>
                         </div>
                         <div className="space-y-2">
@@ -78,12 +78,12 @@ export default function SettingsPage() {
                         <div className="md:col-span-2 space-y-2">
                             <label className="text-xs font-bold uppercase tracking-widest text-foreground/40 px-1">Address Details</label>
                             <div className="grid grid-cols-2 gap-4">
-                                <input className="px-4 py-3 bg-muted rounded-xl text-sm" placeholder="Line 1" defaultValue="Pastor Gandham Buli Veerraju" />
-                                <input className="px-4 py-3 bg-muted rounded-xl text-sm" placeholder="Line 2" defaultValue="Nayakampalli Post" />
-                                <input className="px-4 py-3 bg-muted rounded-xl text-sm" placeholder="City" defaultValue="Peddapuram" />
-                                <input className="px-4 py-3 bg-muted rounded-xl text-sm" placeholder="Pin" defaultValue="533 457" />
+                                <input className="px-4 py-3 bg-muted rounded-xl text-sm" placeholder="Line 1" defaultValue="Dr. Gandham Buli Veerraju" />
+                                <input className="px-4 py-3 bg-muted rounded-xl text-sm" placeholder="Line 2" defaultValue="K-Nayakampalli (PO), Via Peddapuram" />
+                                <input className="px-4 py-3 bg-muted rounded-xl text-sm" placeholder="City" defaultValue="Kakinada District" />
+                                <input className="px-4 py-3 bg-muted rounded-xl text-sm" placeholder="Pin" defaultValue="533437" />
                                 <input className="px-4 py-3 bg-muted rounded-xl text-sm" placeholder="State" defaultValue="Andhra Pradesh" />
-                                <input className="px-4 py-3 bg-muted rounded-xl text-sm" placeholder="Country" defaultValue="INDIA" />
+                                <input className="px-4 py-3 bg-muted rounded-xl text-sm" placeholder="Country" defaultValue="India" />
                             </div>
                         </div>
                     </div>
@@ -94,7 +94,7 @@ export default function SettingsPage() {
                     <h3 className="text-xl font-bold font-serif">Ministry Heritage Summary (Footer)</h3>
                     <textarea
                         className="w-full h-32 px-6 py-4 bg-muted rounded-[2rem] text-sm leading-relaxed focus:outline-none focus:ring-2 focus:ring-primary/20"
-                        defaultValue="OUR FATHER'S HOME MINISTRIES, was established in July 2010. The visionary behind this initiative was Gandham Buli Veerraju..."
+                        defaultValue="OUR FATHER'S HOME MINISTRIES, was established in July 2010. The visionary behind this initiative was Dr. Gandham Buli Veerraju..."
                     />
                 </div>
 

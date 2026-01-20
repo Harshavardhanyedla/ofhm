@@ -33,7 +33,7 @@ export default function Footer({ settings }: FooterProps) {
             country: "India"
         },
         phone: "+91 9949430413",
-        email: "gandhamforchrist@gmail.com"
+        email: "contact@ofhm.org"
     };
 
     return (

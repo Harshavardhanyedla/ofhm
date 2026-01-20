@@ -100,7 +100,7 @@ export default async function AboutPage() {
                                     <p className="text-primary font-bold uppercase tracking-widest text-xs">Founder & President</p>
                                 </div>
                                 <div className="flex flex-wrap gap-4">
-                                    <a href="mailto:gandhamforchrist@gmail.com" className="flex items-center gap-2 px-6 py-3 bg-secondary text-white rounded-full text-sm font-bold shadow-lg hover:bg-primary transition-all">
+                                    <a href="mailto:contact@ofhm.org" className="flex items-center gap-2 px-6 py-3 bg-secondary text-white rounded-full text-sm font-bold shadow-lg hover:bg-primary transition-all">
                                         <Mail className="h-4 w-4" />
                                         Inquiries
                                     </a>

@@ -22,15 +22,15 @@ export default async function ContactPage() {
 
     const contact = settings?.contact || {
         address: {
-            line1: "Pastor Gandham Buli Veerraju",
-            line2: "Nayakampalli Post",
-            city: "Peddapuram",
-            pin: "533 457",
+            line1: "Dr. Gandham Buli Veerraju",
+            line2: "K-Nayakampalli (PO), Via Peddapuram",
+            city: "Kakinada District",
+            pin: "533437",
             state: "Andhra Pradesh",
-            country: "INDIA"
+            country: "India"
         },
-        phone: "+91 99494 30413",
-        email: "ofhmindia@gmail.com"
+        phone: "+91 9949430413",
+        email: "contact@ofhm.org"
     };
 
     const contactInfo = [

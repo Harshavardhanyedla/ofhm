@@ -21,7 +21,7 @@ const legacyContent = {
             country: "India"
         },
         phone: "+91 9949430413",
-        email: "gandhamforchrist@gmail.com"
+        email: "contact@ofhm.org"
     },
     impact: {
         orphans: 1500,
