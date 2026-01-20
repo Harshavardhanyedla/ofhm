@@ -13,7 +13,6 @@ const navItems = [
     { name: 'Activities', href: '/activities' },
     { name: 'Ministries', href: '/ministries' },
     { name: 'Sermons', href: '/sermons' },
-    { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '/contact' },
 ];
 

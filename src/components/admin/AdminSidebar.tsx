@@ -20,7 +20,6 @@ const sidebarItems = [
     { name: "Overview", href: "/admin/dashboard", icon: LayoutDashboard },
     { name: "Activities", href: "/admin/activities", icon: Target },
     { name: "Sermons", href: "/admin/sermons", icon: Mic2 },
-    { name: "Blog Posts", href: "/admin/blog", icon: FileText },
     { name: "Ministries", href: "/admin/ministries", icon: HeartHandshake },
     { name: "Donations", href: "/admin/donations", icon: Users },
     { name: "Settings", href: "/admin/settings", icon: Settings },
