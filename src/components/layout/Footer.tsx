@@ -22,18 +22,18 @@ interface FooterProps {
 }
 
 export default function Footer({ settings }: FooterProps) {
-    const summary = settings?.footerSummary || "OUR FATHER'S HOME MINISTRIES, established in July 2010. Led by Pastor Gandham B. V Raju, we are dedicated to reaching the unreached and serving the marginalized communities in India.";
+    const summary = settings?.footerSummary || "OUR FATHER'S HOME MINISTRIES, established in July 2010. Led by Dr. Gandham Buli Veerraju, we are dedicated to reaching the unreached and serving the marginalized communities in India.";
     const contact = settings?.contact || {
         address: {
-            line1: "Pastor Gandham B. V Raju",
-            line2: "Nayakampalli Post",
-            city: "Peddapuram",
-            pin: "533 457",
+            line1: "Dr. Gandham Buli Veerraju",
+            line2: "K-Nayakampalli (PO), Via Peddapuram",
+            city: "Kakinada District",
+            pin: "533437",
             state: "Andhra Pradesh",
-            country: "INDIA"
+            country: "India"
         },
-        phone: "+91 99494 30413",
-        email: "ofhmindia@gmail.com"
+        phone: "+91 9949430413",
+        email: "gandhamforchrist@gmail.com"
     };
 
     return (
@@ -120,7 +120,12 @@ export default function Footer({ settings }: FooterProps) {
                             </li>
                             <li className="flex items-center text-sm text-foreground/70">
                                 <Phone className="h-4 w-4 mr-3 text-primary shrink-0" />
-                                <span>{contact.phone}</span>
+                                <div className="flex flex-col">
+                                    <span>{contact.phone}</span>
+                                    <a href="https://wa.me/919949430413" target="_blank" rel="noopener noreferrer" className="text-xs text-[#25D366] font-bold hover:underline">
+                                        Chat on WhatsApp
+                                    </a>
+                                </div>
                             </li>
                             <li className="flex items-center text-sm text-foreground/70">
                                 <Mail className="h-4 w-4 mr-3 text-primary shrink-0" />

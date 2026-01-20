@@ -13,15 +13,15 @@ const legacyContent = {
     footerSummary: "OUR FATHER'S HOME MINISTRIES, was established in July 2010. The visionary behind this initiative was Gandham Buli Veerraju, who currently serves as its President. Following his graduation from a Theological Seminary, Veeraju was driven by a passionate desire to reach the unreached and to provide training for laymen, dedicating himself to the discipline of in society through the platform of Our Father's Home Ministries.",
     contact: {
         address: {
-            line1: "Pastor Gandham B. V Raju",
-            line2: "Nayakampalli Post",
-            city: "Peddapuram",
-            pin: "533 457",
+            line1: "Dr. Gandham Buli Veerraju",
+            line2: "K-Nayakampalli (PO), Via Peddapuram",
+            city: "Kakinada District",
+            pin: "533437",
             state: "Andhra Pradesh",
-            country: "INDIA"
+            country: "India"
         },
-        phone: "+91 99494 30413",
-        email: "ofhmindia@gmail.com"
+        phone: "+91 9949430413",
+        email: "gandhamforchrist@gmail.com"
     },
     impact: {
         orphans: 1500,
@@ -31,10 +31,10 @@ const legacyContent = {
     },
     founder: {
         title: "PRESIDENT'S FAMILY",
-        name: "Gandham B. V Raju",
+        name: "Dr. Gandham Buli Veerraju",
         role: "President",
-        familyHistory: "In 2010, OUR FATHER'S HOME MINISTRIES was founded by Gandham B. V Raju, who currently holds the position of President. Following the completion of his theological studies and Seminary graduation, Raju cultivated a fervent commitment to reaching out to those who had not yet been reached and providing training for laymen in evangelization. Additionally, he carried a profound sense of responsibility to support the underprivileged and those in need within the community. Raju had been actively engaged various capacities since 1994, even before the official establishment of OUR FATHER'S HOME MINISTRIES.",
-        fullTestimony: "I am Pastor Gandham B. V Raju, founder of OFHM India, and I am privileged to share my testimony of God's transforming grace.\n\nBorn into a Hindu family, my early life was centered around idol worship as encouraged by my father. Yet, in the quietness of our home, my mother secretly prayed for our family’s salvation. Her faith was tested when a pastor visiting our home was met with my father's anger and threats. However, she persevered in prayer.\n\nYears later, when my father fell gravely ill and faced the fear of death, my mother's faith became our beacon. She prayed for his healing, promising God that if He restored my father, my father would accept Jesus as his Savior. God, in His mercy, answered. My father was healed, accepted Christ, and dedicated my life to His service.\n\nThough I initially resisted this calling, seeking a secular career and even being selected for the police service, the reminders of my parents and the promptings of the Holy Spirit led me to theological college. There, God confirmed His purpose for my life.\n\nToday, I serve as a pastor, blessed with a wonderful family—my wife and our two sons, Joy Lazarus and Vinod. I invite you to partner with OFHM as we spread God’s Kingdom across India. Your support helps us reach the unreached and serve the marginalized in His name.",
+        familyHistory: "In 2010, OUR FATHER'S HOME MINISTRIES was founded by Dr. Gandham Buli Veerraju, who currently holds the position of President. Following the completion of his theological studies and Seminary graduation, Dr. Gandham cultivated a fervent commitment to reaching out to those who had not yet been reached and providing training for laymen in evangelization. Additionally, he carried a profound sense of responsibility to support the underprivileged and those in need within the community. Dr. Gandham had been actively engaged in various capacities since 1994, even before the official establishment of OUR FATHER'S HOME MINISTRIES.",
+        fullTestimony: "I was born into a Hindu family deeply rooted in idol worship. My mother, however, secretly prayed for the salvation of our family. My father opposed Christianity strongly and once even threatened a pastor who came to share the Gospel at our home. After that incident, my mother lost all fellowship with the church but continued praying faithfully at home for many years.\n\nOne day, my father became critically ill and lost all hope of survival. In his helplessness, my mother asked him to pray and made a vow to God: “If You heal my husband, we will accept You as our Lord and Savior.” God answered that prayer. My father was completely healed and accepted Jesus Christ as his personal Savior. He also dedicated me, his only son, to God’s service.\n\nSoon after, a pastor came to our home, just as God had revealed in a dream to my father. My father was baptized, and through his testimony, our entire family and many in our village came to know Christ.\n\nAs I grew older, I pursued higher studies and even cleared police selection. But God called me into full-time ministry. After fasting and prayer, God confirmed His purpose for my life through His Word (Isaiah 61:1–3; James 1:27). I surrendered my life to His service.\n\nToday, through Our Father’s Home Ministries, we serve people in need and share the love of Christ. We are seeking partners to help advance God’s kingdom.",
         image: "/images/founder.jpg"
     },
     ministries: [
