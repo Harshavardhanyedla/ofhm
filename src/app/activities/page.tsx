@@ -126,21 +126,6 @@ export default async function ActivitiesPage() {
                                     <p className="text-foreground/60 leading-relaxed line-clamp-3">
                                         {activity.shortDescription}
                                     </p>
-                                    <div className="pt-4 flex items-center justify-between mt-auto">
-                                        <Link
-                                            href={`/activities/${activity.slug}`}
-                                            className="inline-flex items-center text-sm font-bold text-primary hover:gap-2 transition-all"
-                                        >
-                                            LEARN MORE <ArrowRight className="ml-2 h-4 w-4" />
-                                        </Link>
-                                        <Link
-                                            href={`/donate?fund=${activity.slug}`}
-                                            className="p-3 bg-primary/5 hover:bg-primary text-primary hover:text-white rounded-full transition-all"
-                                            title="Support this activity"
-                                        >
-                                            <Heart className="h-5 w-5" />
-                                        </Link>
-                                    </div>
                                 </div>
                             </div>
                         ))}

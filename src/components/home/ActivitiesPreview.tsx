@@ -94,20 +94,6 @@ export default function ActivitiesPreview() {
                                 <p className="text-foreground/60 text-sm leading-relaxed line-clamp-2">
                                     {activity.shortDescription}
                                 </p>
-                                <div className="pt-4 flex items-center justify-between">
-                                    <Link
-                                        href={`/activities/${activity.slug}`}
-                                        className="text-xs font-bold uppercase tracking-widest text-primary hover:opacity-70 transition-opacity"
-                                    >
-                                        Learn More
-                                    </Link>
-                                    <Link
-                                        href={`/donate?fund=${activity.slug}`}
-                                        className="p-3 bg-primary/5 hover:bg-primary text-primary hover:text-white rounded-full transition-all"
-                                    >
-                                        <Heart className="h-4 w-4" />
-                                    </Link>
-                                </div>
                             </div>
                         </div>
                     ))}
