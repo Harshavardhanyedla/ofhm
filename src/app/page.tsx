@@ -3,8 +3,11 @@ import SiteSettings from "@/models/SiteSettings";
 import Impact from "@/models/Impact";
 import Hero from "@/components/home/Hero";
 import ImpactSection from "@/components/home/ImpactSection";
-import MinistriesPreview from "@/components/home/MinistriesPreview";
 import ActivitiesPreview from "@/components/home/ActivitiesPreview";
+import AboutPreview from "@/components/home/AboutPreview";
+import GalleryPreview from "@/components/home/GalleryPreview";
+import SermonsPreview from "@/components/home/SermonsPreview";
+import ContactSection from "@/components/home/ContactSection";
 import DonationAppeal from "@/components/home/DonationAppeal";
 
 export const dynamic = "force-dynamic";
@@ -35,6 +38,10 @@ export default async function Home() {
       <Hero statements={heroStatements} />
       <ImpactSection stats={stats} />
       <ActivitiesPreview />
+      <AboutPreview />
+      <GalleryPreview />
+      <SermonsPreview />
+      <ContactSection />
       <DonationAppeal />
     </div>
   );
