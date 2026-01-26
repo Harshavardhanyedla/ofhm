@@ -18,9 +18,10 @@ const fallbackFeatured = [
         shortDescription: "Restoring dignity and providing shelter, food, and medical care to elderly widows.",
     },
     {
-        title: "Borewell Projects",
-        slug: "borewell-projects",
-        shortDescription: "Bringing clean drinking water to remote villages through sustainable borewells.",
+        title: "Discipleship Training Programs",
+        slug: "discipleship-training",
+        images: ["/images/discipleship.png"],
+        shortDescription: "Equipping leaders and believers through intensive biblical training and spiritual mentorship.",
     }
 ];
 

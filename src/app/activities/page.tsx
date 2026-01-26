@@ -32,6 +32,7 @@ const fallbackActivities = [
     {
         title: "Discipleship Training Programs",
         slug: "discipleship-training",
+        images: ["/images/discipleship.png"],
         shortDescription: "Equipping leaders and believers through intensive biblical training and spiritual mentorship.",
     },
     {

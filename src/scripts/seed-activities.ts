@@ -12,7 +12,11 @@ const activities = [
         slug: "widow-care",
         images: ["/images/widow-care.png"]
     },
-    { title: "Discipleship Training Programs", slug: "discipleship-training" },
+    {
+        title: "Discipleship Training Programs",
+        slug: "discipleship-training",
+        images: ["/images/discipleship.png"]
+    },
     { title: "Outreach to Unreached Tribal Villages", slug: "tribal-outreach" },
     { title: "Eye Medical Care", slug: "eye-medical-care" },
     { title: "Free Bible Distributions", slug: "bible-distribution" },
