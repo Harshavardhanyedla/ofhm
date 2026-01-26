@@ -44,6 +44,7 @@ const fallbackActivities = [
     {
         title: "Eye Medical Care",
         slug: "eye-medical-care",
+        images: ["/images/eye-care.png"],
         shortDescription: "Providing free eye checkups, surgeries, and treatments to prevent avoidable blindness.",
     },
     {

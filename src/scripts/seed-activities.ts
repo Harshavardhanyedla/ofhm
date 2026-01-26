@@ -22,7 +22,11 @@ const activities = [
         slug: "tribal-outreach",
         images: ["/images/tribal-outreach.png"]
     },
-    { title: "Eye Medical Care", slug: "eye-medical-care" },
+    {
+        title: "Eye Medical Care",
+        slug: "eye-medical-care",
+        images: ["/images/eye-care.png"]
+    },
     { title: "Free Bible Distributions", slug: "bible-distribution" },
     { title: "Borewell Projects", slug: "borewell-projects" },
     { title: "Church Plantation", slug: "church-plantation", images: ["/images/church.jpg"] },
