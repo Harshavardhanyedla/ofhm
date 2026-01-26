@@ -20,7 +20,7 @@ const activities = [
     {
         title: "Outreach to Unreached Tribal Villages",
         slug: "tribal-outreach",
-        images: ["/images/tribal-outreach.png"]
+        images: ["/images/tribal-outreach-v2.png"]
     },
     {
         title: "Eye Medical Care",
@@ -50,7 +50,7 @@ const activities = [
     {
         title: "Self-Sustainable Projects",
         slug: "self-sustainable-projects",
-        images: ["/images/self-sustainable.png"]
+        images: ["/images/self-sustainable-v2.png"]
     },
 ];
 

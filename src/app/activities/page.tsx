@@ -38,7 +38,7 @@ const fallbackActivities = [
     {
         title: "Outreach to Unreached Tribal Villages",
         slug: "tribal-outreach",
-        images: ["/images/tribal-outreach.png"],
+        images: ["/images/tribal-outreach-v2.png"],
         shortDescription: "Taking the message of hope to the most remote and marginalized tribal communities.",
     },
     {
@@ -74,7 +74,7 @@ const fallbackActivities = [
     {
         title: "Self-Sustainable Projects",
         slug: "self-sustainable-projects",
-        images: ["/images/self-sustainable.png"],
+        images: ["/images/self-sustainable-v2.png"],
         shortDescription: "Empowering families through vocational training and small-scale business support.",
     }
 ];
