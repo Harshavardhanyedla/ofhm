@@ -101,16 +101,6 @@ const sermons = [
         "id": "R9cXDknOtx8"
     },
     {
-        "title": "Pray for remaining construction project of OFHM building",
-        "url": "https://www.youtube.com/watch?v=3Bts1kraf5w",
-        "id": "3Bts1kraf5w"
-    },
-    {
-        "title": "covid relief for lockdown areas.",
-        "url": "https://www.youtube.com/watch?v=Zewija1ZDrI",
-        "id": "Zewija1ZDrI"
-    },
-    {
         "title": "covid-19 second wave relief to poor, needy and covid effected areas.",
         "url": "https://www.youtube.com/watch?v=ehrpPg27hYA",
         "id": "ehrpPg27hYA"
