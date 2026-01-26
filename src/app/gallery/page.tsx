@@ -7,14 +7,14 @@ import { X } from 'lucide-react';
 const galleryImages = [
     { src: '/images/orphan-care.png', title: 'Orphan Care Mission' },
     { src: '/images/widow-care.png', title: 'Widow Support' },
-    { src: '/images/discipleship.png', title: 'Discipleship Training' },
-    { src: '/images/tribal-outreach.png', title: 'Tribal Outreach' },
-    { src: '/images/eye-care.png', title: 'Eye Medical Camp' },
+    { src: '/images/discipleship-v2.png', title: 'Discipleship Training' },
+    { src: '/images/tribal-outreach-v3.png', title: 'Tribal Outreach' },
+    { src: '/images/eye-medical-care-v3.png', title: 'Eye Medical Camp' },
     { src: '/images/bible-distribution.png', title: 'Bible Distribution' },
     { src: '/images/borewell-projects.png', title: 'Borewell Projects' },
     { src: '/images/church-plantation.png', title: 'Church Plantation' },
     { src: '/images/food-distribution.png', title: 'Food Distribution' },
-    { src: '/images/self-sustainable.png', title: 'Self-Sustainable Projects' },
+    { src: '/images/self-sustainable-v2.png', title: 'Self-Sustainable Projects' },
 ];
 
 export default function GalleryPage() {
@@ -54,9 +54,7 @@ export default function GalleryPage() {
                                     alt={image.title}
                                     className="w-full h-auto object-cover group-hover:scale-110 transition-transform duration-700"
                                 />
-                                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center p-6">
-                                    <h3 className="text-white text-xl font-serif text-center">{image.title}</h3>
-                                </div>
+                                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                             </motion.div>
                         ))}
                     </div>
@@ -85,7 +83,6 @@ export default function GalleryPage() {
                                 alt={selectedImage.title}
                                 className="max-w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl"
                             />
-                            <h3 className="text-white text-2xl font-serif mt-6">{selectedImage.title}</h3>
                             <button
                                 className="absolute -top-12 right-0 text-white/50 hover:text-white transition-colors"
                                 onClick={() => setSelectedImage(null)}
