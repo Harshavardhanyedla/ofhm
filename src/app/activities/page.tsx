@@ -67,6 +67,7 @@ const fallbackActivities = [
     {
         title: "Food & Clothes Distribution",
         slug: "food-clothes-distribution",
+        images: ["/images/food-distribution.png"],
         shortDescription: "Meeting immediate physical needs of the poor with regular food and clothing drives.",
     },
     {

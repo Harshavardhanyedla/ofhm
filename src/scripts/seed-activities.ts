@@ -38,7 +38,11 @@ const activities = [
         images: ["/images/borewell-projects.png"]
     },
     { title: "Church Plantation", slug: "church-plantation", images: ["/images/church.jpg"] },
-    { title: "Food & Clothes Distribution", slug: "food-clothes-distribution" },
+    {
+        title: "Food & Clothes Distribution",
+        slug: "food-clothes-distribution",
+        images: ["/images/food-distribution.png"]
+    },
     { title: "Self-Sustainable Projects", slug: "self-sustainable-projects" },
 ];
 
