@@ -43,7 +43,11 @@ const activities = [
         slug: "food-clothes-distribution",
         images: ["/images/food-distribution.png"]
     },
-    { title: "Self-Sustainable Projects", slug: "self-sustainable-projects" },
+    {
+        title: "Self-Sustainable Projects",
+        slug: "self-sustainable-projects",
+        images: ["/images/self-sustainable.png"]
+    },
 ];
 
 async function seedActivities() {

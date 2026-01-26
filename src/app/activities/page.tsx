@@ -73,6 +73,7 @@ const fallbackActivities = [
     {
         title: "Self-Sustainable Projects",
         slug: "self-sustainable-projects",
+        images: ["/images/self-sustainable.png"],
         shortDescription: "Empowering families through vocational training and small-scale business support.",
     }
 ];
