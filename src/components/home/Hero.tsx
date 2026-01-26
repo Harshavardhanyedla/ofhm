@@ -61,7 +61,7 @@ export default function Hero({ statements }: HeroProps) {
                         Support Our Mission
                     </Link>
                     <Link
-                        href="/ministries"
+                        href="/gallery"
                         className="px-10 py-5 bg-transparent border-2 border-white text-white rounded-full font-bold text-lg hover:bg-white/10 transition-all backdrop-blur-sm flex items-center justify-center"
                     >
                         View Our Work
