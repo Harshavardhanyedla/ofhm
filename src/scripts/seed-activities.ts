@@ -32,7 +32,11 @@ const activities = [
         slug: "bible-distribution",
         images: ["/images/bible-distribution.png"]
     },
-    { title: "Borewell Projects", slug: "borewell-projects" },
+    {
+        title: "Borewell Projects",
+        slug: "borewell-projects",
+        images: ["/images/borewell-projects.png"]
+    },
     { title: "Church Plantation", slug: "church-plantation", images: ["/images/church.jpg"] },
     { title: "Food & Clothes Distribution", slug: "food-clothes-distribution" },
     { title: "Self-Sustainable Projects", slug: "self-sustainable-projects" },

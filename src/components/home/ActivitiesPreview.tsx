@@ -22,6 +22,12 @@ const fallbackFeatured = [
         slug: "discipleship-training",
         images: ["/images/discipleship.png"],
         shortDescription: "Equipping leaders and believers through intensive biblical training and spiritual mentorship.",
+    },
+    {
+        title: "Borewell Projects",
+        slug: "borewell-projects",
+        images: ["/images/borewell-projects.png"],
+        shortDescription: "Bringing clean drinking water to remote villages through sustainable borewells.",
     }
 ];
 

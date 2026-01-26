@@ -56,6 +56,7 @@ const fallbackActivities = [
     {
         title: "Borewell Projects",
         slug: "borewell-projects",
+        images: ["/images/borewell-projects.png"],
         shortDescription: "Bringing clean drinking water to remote villages through sustainable borewells.",
     },
     {
