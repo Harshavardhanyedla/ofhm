@@ -18,6 +18,11 @@ const galleryImages = [
     { src: '/images/orphan-prayer.png', title: 'Orphan Care Prayer' },
     { src: '/images/orphan-group.jpg', title: 'Orphan Care Group' },
     { src: '/images/orphan-students.png', title: 'Orphan Care Students' },
+    { src: '/images/gallery-orphan-art.jpg', title: 'Children Art Work' },
+    { src: '/images/gallery-children-banner.png', title: 'Childrens Home' },
+    { src: '/images/gallery-orphan-gathering.png', title: 'Children Gathering' },
+    { src: '/images/gallery-orphan-celebration.jpg', title: 'Celebration with Children' },
+    { src: '/images/gallery-ministry-meeting.png', title: 'Ministry Meeting' },
 ];
 
 export default function GalleryPage() {
