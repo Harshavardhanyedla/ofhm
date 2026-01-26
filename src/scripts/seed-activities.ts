@@ -27,7 +27,11 @@ const activities = [
         slug: "eye-medical-care",
         images: ["/images/eye-care.png"]
     },
-    { title: "Free Bible Distributions", slug: "bible-distribution" },
+    {
+        title: "Free Bible Distributions",
+        slug: "bible-distribution",
+        images: ["/images/bible-distribution.png"]
+    },
     { title: "Borewell Projects", slug: "borewell-projects" },
     { title: "Church Plantation", slug: "church-plantation", images: ["/images/church.jpg"] },
     { title: "Food & Clothes Distribution", slug: "food-clothes-distribution" },

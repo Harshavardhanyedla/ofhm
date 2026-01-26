@@ -50,6 +50,7 @@ const fallbackActivities = [
     {
         title: "Free Bible Distributions",
         slug: "bible-distribution",
+        images: ["/images/bible-distribution.png"],
         shortDescription: "Placing the Word of God in the hands of those who have never owned a Bible.",
     },
     {
