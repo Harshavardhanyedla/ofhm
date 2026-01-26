@@ -37,17 +37,20 @@ export default async function ContactPage() {
         {
             icon: MapPin,
             title: "Our Location",
-            content: `${contact.address.line1}, ${contact.address.line2}, ${contact.address.city}, ${contact.address.pin}, ${contact.address.state}, ${contact.address.country}`
+            content: `${contact.address.city}, ${contact.address.state}, ${contact.address.country}`,
+            href: `https://www.google.com/maps/search/?api=1&query=Our+Father%27s+Home+Ministries+K+Nayakampalli+Andhra+Pradesh`
         },
         {
             icon: Phone,
             title: "Phone Number",
-            content: contact.phone
+            content: contact.phone,
+            href: `tel:${contact.phone.replace(/\s+/g, '')}`
         },
         {
             icon: Mail,
             title: "Email Address",
-            content: contact.email
+            content: contact.email,
+            href: `mailto:${contact.email}`
         },
     ];
 
@@ -79,7 +82,13 @@ export default async function ContactPage() {
 
                             <div className="space-y-8">
                                 {contactInfo.map((item) => (
-                                    <div key={item.title} className="flex items-start gap-6 group">
+                                    <a
+                                        key={item.title}
+                                        href={item.href}
+                                        className="flex items-start gap-6 group hover:translate-x-2 transition-transform duration-300"
+                                        target={item.icon === MapPin ? "_blank" : undefined}
+                                        rel={item.icon === MapPin ? "noopener noreferrer" : undefined}
+                                    >
                                         <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
                                             <item.icon className="h-6 w-6" />
                                         </div>
@@ -87,7 +96,7 @@ export default async function ContactPage() {
                                             <h4 className="font-bold text-secondary uppercase tracking-wider text-xs">{item.title}</h4>
                                             <p className="text-foreground/70 text-lg">{item.content}</p>
                                         </div>
-                                    </div>
+                                    </a>
                                 ))}
                             </div>
 

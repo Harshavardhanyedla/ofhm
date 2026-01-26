@@ -33,11 +33,32 @@ export default function ContactSection() {
 
                         <div className="grid grid-cols-1 gap-12">
                             {[
-                                { icon: MapPin, title: "Our Location", content: "Kakinada District, Andhra Pradesh, India" },
-                                { icon: Phone, title: "Call Us", content: "+91 9949430413" },
-                                { icon: Mail, title: "Email Us", content: "contact@ofhm.org" },
+                                {
+                                    icon: MapPin,
+                                    title: "Our Location",
+                                    content: "Kakinada District, Andhra Pradesh, India",
+                                    href: "https://www.google.com/maps/search/?api=1&query=Our+Father%27s+Home+Ministries+K+Nayakampalli+Andhra+Pradesh"
+                                },
+                                {
+                                    icon: Phone,
+                                    title: "Call Us",
+                                    content: "+91 9949430413",
+                                    href: "tel:+919949430413"
+                                },
+                                {
+                                    icon: Mail,
+                                    title: "Email Us",
+                                    content: "contact@ofhm.org",
+                                    href: "mailto:contact@ofhm.org"
+                                },
                             ].map((item, idx) => (
-                                <div key={idx} className="flex items-center gap-6 group">
+                                <a
+                                    key={idx}
+                                    href={item.href}
+                                    className="flex items-center gap-6 group hover:translate-x-2 transition-transform duration-300"
+                                    target={item.icon === MapPin ? "_blank" : undefined}
+                                    rel={item.icon === MapPin ? "noopener noreferrer" : undefined}
+                                >
                                     <div className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
                                         <item.icon className="h-7 w-7" />
                                     </div>
@@ -45,7 +66,7 @@ export default function ContactSection() {
                                         <h4 className="text-xs font-bold uppercase tracking-widest text-primary/60">{item.title}</h4>
                                         <p className="text-xl font-medium">{item.content}</p>
                                     </div>
-                                </div>
+                                </a>
                             ))}
                         </div>
                     </div>
