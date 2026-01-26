@@ -15,17 +15,17 @@ const activities = [
     {
         title: "Discipleship Training Programs",
         slug: "discipleship-training",
-        images: ["/images/discipleship.png"]
+        images: ["/images/discipleship-v2.png"]
     },
     {
         title: "Outreach to Unreached Tribal Villages",
         slug: "tribal-outreach",
-        images: ["/images/tribal-outreach-v2.png"]
+        images: ["/images/tribal-outreach-v3.png"]
     },
     {
         title: "Eye Medical Care",
         slug: "eye-medical-care",
-        images: ["/images/eye-care.png"]
+        images: ["/images/eye-medical-care-v2.png"]
     },
     {
         title: "Free Bible Distributions",

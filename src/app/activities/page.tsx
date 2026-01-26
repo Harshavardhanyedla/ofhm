@@ -32,19 +32,19 @@ const fallbackActivities = [
     {
         title: "Discipleship Training Programs",
         slug: "discipleship-training",
-        images: ["/images/discipleship.png"],
+        images: ["/images/discipleship-v2.png"],
         shortDescription: "Equipping leaders and believers through intensive biblical training and spiritual mentorship.",
     },
     {
         title: "Outreach to Unreached Tribal Villages",
         slug: "tribal-outreach",
-        images: ["/images/tribal-outreach-v2.png"],
+        images: ["/images/tribal-outreach-v3.png"],
         shortDescription: "Taking the message of hope to the most remote and marginalized tribal communities.",
     },
     {
         title: "Eye Medical Care",
         slug: "eye-medical-care",
-        images: ["/images/eye-care.png"],
+        images: ["/images/eye-medical-care-v2.png"],
         shortDescription: "Providing free eye checkups, surgeries, and treatments to prevent avoidable blindness.",
     },
     {
