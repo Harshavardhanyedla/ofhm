@@ -8,11 +8,13 @@ const fallbackFeatured = [
     {
         title: "Orphan Care",
         slug: "orphan-care",
+        images: ["/images/orphan-care.png"],
         shortDescription: "Providing a loving home, education, and spiritual guidance to children since 1994.",
     },
     {
         title: "Old Age & Homeless Widows Care",
         slug: "widow-care",
+        images: ["/images/widow-care.png"],
         shortDescription: "Restoring dignity and providing shelter, food, and medical care to elderly widows.",
     },
     {
