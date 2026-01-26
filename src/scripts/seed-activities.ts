@@ -17,7 +17,11 @@ const activities = [
         slug: "discipleship-training",
         images: ["/images/discipleship.png"]
     },
-    { title: "Outreach to Unreached Tribal Villages", slug: "tribal-outreach" },
+    {
+        title: "Outreach to Unreached Tribal Villages",
+        slug: "tribal-outreach",
+        images: ["/images/tribal-outreach.png"]
+    },
     { title: "Eye Medical Care", slug: "eye-medical-care" },
     { title: "Free Bible Distributions", slug: "bible-distribution" },
     { title: "Borewell Projects", slug: "borewell-projects" },
