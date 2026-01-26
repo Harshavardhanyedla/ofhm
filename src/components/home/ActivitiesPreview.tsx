@@ -9,7 +9,7 @@ const fallbackFeatured = [
         title: "Orphan Care",
         slug: "orphan-care",
         images: ["/images/orphan-care.png"],
-        shortDescription: "Providing a loving home, education, and spiritual guidance to children since 1994.",
+        shortDescription: "Providing a loving home, education, and spiritual guidance to children in need since 1994.",
     },
     {
         title: "Old Age & Homeless Widows Care",
@@ -20,8 +20,26 @@ const fallbackFeatured = [
     {
         title: "Discipleship Training Programs",
         slug: "discipleship-training",
-        images: ["/images/discipleship.png"],
+        images: ["/images/discipleship-v2.png"],
         shortDescription: "Equipping leaders and believers through intensive biblical training and spiritual mentorship.",
+    },
+    {
+        title: "Outreach to Unreached Tribal Villages",
+        slug: "tribal-outreach",
+        images: ["/images/tribal-outreach-v3.png"],
+        shortDescription: "Taking the message of hope to the most remote and marginalized tribal communities.",
+    },
+    {
+        title: "Eye Medical Care",
+        slug: "eye-medical-care",
+        images: ["/images/eye-medical-care-v3.png"],
+        shortDescription: "Providing free eye checkups, surgeries, and treatments to prevent avoidable blindness.",
+    },
+    {
+        title: "Free Bible Distributions",
+        slug: "bible-distribution",
+        images: ["/images/bible-distribution.png"],
+        shortDescription: "Placing the Word of God in the hands of those who have never owned a Bible.",
     },
     {
         title: "Borewell Projects",
@@ -34,6 +52,18 @@ const fallbackFeatured = [
         slug: "church-plantation",
         images: ["/images/church-plantation.png"],
         shortDescription: "Establishing vibrant spiritual communities in areas with no gospel presence.",
+    },
+    {
+        title: "Food & Clothes Distribution",
+        slug: "food-clothes-distribution",
+        images: ["/images/food-distribution.png"],
+        shortDescription: "Meeting immediate physical needs of the poor with regular food and clothing drives.",
+    },
+    {
+        title: "Self-Sustainable Projects",
+        slug: "self-sustainable-projects",
+        images: ["/images/self-sustainable-v2.png"],
+        shortDescription: "Empowering families through vocational training and small-scale business support.",
     }
 ];
 
@@ -44,12 +74,23 @@ export default function ActivitiesPreview() {
     useEffect(() => {
         const fetchActivities = async () => {
             try {
-                const res = await fetch("/api/activities?featured=true");
+                const res = await fetch("/api/activities");
                 const data = await res.json();
 
                 if (data && data.length > 0) {
-                    // Merge logic for preview: Use data if featured, otherwise cap it
-                    setActivities(data.slice(0, 6));
+                    // Merge logic: Prioritize code-defined images and info for fallbacks
+                    const merged = fallbackFeatured.map(fallback => {
+                        const dbVersion = data.find((db: any) => db.slug === fallback.slug);
+                        if (dbVersion) {
+                            return {
+                                ...dbVersion,
+                                images: fallback.images,
+                                title: fallback.title
+                            };
+                        }
+                        return fallback;
+                    });
+                    setActivities(merged);
                 } else {
                     setActivities(fallbackFeatured);
                 }
