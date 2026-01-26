@@ -81,7 +81,7 @@ export default function Footer({ settings }: FooterProps) {
                     <div className="space-y-4">
                         <h4 className="font-bold text-sm uppercase tracking-wider text-secondary">Quick Links</h4>
                         <ul className="space-y-2">
-                            {['Home', 'About', 'Ministries', 'Sermons', 'Contact', 'Donate'].map((link) => (
+                            {['Home', 'About', 'Gallery', 'Sermons', 'Contact', 'Donate'].map((link) => (
                                 <li key={link}>
                                     <Link href={`/${link.toLowerCase() === 'home' ? '' : link.toLowerCase()}`} className="text-sm text-foreground/70 hover:text-primary transition-colors">
                                         {link}
@@ -97,7 +97,7 @@ export default function Footer({ settings }: FooterProps) {
                         <ul className="space-y-2">
                             {['Orphan Care', 'Widow Support', 'Education', 'Evangelism', 'Food Relief'].map((item) => (
                                 <li key={item}>
-                                    <Link href="/ministries" className="text-sm text-foreground/70 hover:text-primary transition-colors">
+                                    <Link href="/gallery" className="text-sm text-foreground/70 hover:text-primary transition-colors">
                                         {item}
                                     </Link>
                                 </li>

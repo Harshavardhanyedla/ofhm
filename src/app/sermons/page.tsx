@@ -210,7 +210,7 @@ export default function SermonsPage() {
                             >
                                 <div className="relative aspect-video rounded-3xl overflow-hidden mb-6 shadow-xl border border-muted/50">
                                     <img
-                                        src={`https://img.youtube.com/vi/${sermon.id}/maxresdefault.jpg`}
+                                        src={`https://i.ytimg.com/vi/${sermon.id}/hqdefault.jpg`}
                                         alt={sermon.title}
                                         className="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-700"
                                         onError={(e: any) => {
@@ -218,8 +218,8 @@ export default function SermonsPage() {
                                         }}
                                     />
                                     <div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-colors" />
-                                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                                        <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center text-primary shadow-2xl scale-75 group-hover:scale-100 transition-transform duration-300">
+                                    <div className="absolute inset-0 flex items-center justify-center">
+                                        <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center text-primary shadow-2xl scale-90 group-hover:scale-110 transition-transform duration-300">
                                             <Play className="h-8 w-8 fill-current translate-x-1" />
                                         </div>
                                     </div>

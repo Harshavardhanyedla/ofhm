@@ -34,7 +34,6 @@ export default async function Home() {
     <div className="w-full">
       <Hero statements={heroStatements} />
       <ImpactSection stats={stats} />
-      <MinistriesPreview />
       <ActivitiesPreview />
       <DonationAppeal />
     </div>
