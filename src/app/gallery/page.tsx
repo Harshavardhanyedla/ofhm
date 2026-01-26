@@ -15,6 +15,9 @@ const galleryImages = [
     { src: '/images/church-plantation.png', title: 'Church Plantation' },
     { src: '/images/food-distribution.png', title: 'Food Distribution' },
     { src: '/images/self-sustainable-v2.png', title: 'Self-Sustainable Projects' },
+    { src: '/images/orphan-prayer.png', title: 'Orphan Care Prayer' },
+    { src: '/images/orphan-group.jpg', title: 'Orphan Care Group' },
+    { src: '/images/orphan-students.png', title: 'Orphan Care Students' },
 ];
 
 export default function GalleryPage() {
