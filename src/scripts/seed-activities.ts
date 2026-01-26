@@ -25,7 +25,7 @@ const activities = [
     {
         title: "Eye Medical Care",
         slug: "eye-medical-care",
-        images: ["/images/eye-medical-care-v2.png"]
+        images: ["/images/eye-medical-care-v3.png"]
     },
     {
         title: "Free Bible Distributions",

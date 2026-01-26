@@ -44,7 +44,7 @@ const fallbackActivities = [
     {
         title: "Eye Medical Care",
         slug: "eye-medical-care",
-        images: ["/images/eye-medical-care-v2.png"],
+        images: ["/images/eye-medical-care-v3.png"],
         shortDescription: "Providing free eye checkups, surgeries, and treatments to prevent avoidable blindness.",
     },
     {
@@ -82,10 +82,17 @@ const fallbackActivities = [
 export default async function ActivitiesPage() {
     const dbActivities = await getActivities();
 
-    // Merge logic: Use DB activity if it exists, otherwise use fallback
+    // Merge logic: Use DB activity if it exists, but prioritize images from fallback
     const activities = fallbackActivities.map(fallback => {
         const dbVersion = dbActivities.find((db: any) => db.slug === fallback.slug);
-        return dbVersion || fallback;
+        if (dbVersion) {
+            return {
+                ...dbVersion,
+                images: fallback.images,
+                title: fallback.title // Also ensure title casing is consistent
+            };
+        }
+        return fallback;
     });
 
     // Also include any extra activities from DB that aren't in fallback list
