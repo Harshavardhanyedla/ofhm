@@ -7,7 +7,7 @@ export interface IDonation extends Document {
     currency: string;
     fund: string; // General, Orphans, Widows, etc.
     status: 'pending' | 'completed' | 'failed';
-    paymentProvider: 'razorpay' | 'paypal';
+    paymentProvider: 'paypal';
     paymentId: string;
     orderId?: string;
     date: Date;
@@ -17,10 +17,10 @@ const DonationSchema: Schema = new Schema({
     donorName: { type: String, required: true },
     email: { type: String, required: true },
     amount: { type: Number, required: true },
-    currency: { type: String, default: 'INR' },
+    currency: { type: String, default: 'USD' },
     fund: { type: String, default: 'General' },
     status: { type: String, enum: ['pending', 'completed', 'failed'], default: 'pending' },
-    paymentProvider: { type: String, enum: ['razorpay', 'paypal'], required: true },
+    paymentProvider: { type: String, enum: ['paypal'], required: true },
     paymentId: { type: String },
     orderId: { type: String },
     date: { type: Date, default: Date.now },

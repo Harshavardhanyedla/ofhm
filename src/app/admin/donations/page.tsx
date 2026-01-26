@@ -37,7 +37,7 @@ export default function AdminDonationsPage() {
                                     </div>
                                 </td>
                                 <td className="px-8 py-6 font-mono text-xs text-foreground/50">pay_NXjk2{i}983zP</td>
-                                <td className="px-8 py-6 font-bold text-secondary text-sm">₹{i}000.00</td>
+                                <td className="px-8 py-6 font-bold text-secondary text-sm">${i}00.00</td>
                                 <td className="px-8 py-6">
                                     <span className="text-xs font-medium text-foreground/60 bg-muted px-2 py-1 rounded-lg">Orphan Care</span>
                                 </td>
@@ -48,7 +48,7 @@ export default function AdminDonationsPage() {
                                     </div>
                                 </td>
                                 <td className="px-8 py-6">
-                                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#003087]">Razorpay</span>
+                                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#003087]">PayPal</span>
                                 </td>
                             </tr>
                         ))}

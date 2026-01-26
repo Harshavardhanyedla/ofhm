@@ -3,11 +3,11 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { ShieldCheck, IndianRupee, Globe, CheckCircle2 } from "lucide-react";
+import { ShieldCheck, DollarSign, CheckCircle2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 
-const donationAmounts = [500, 1000, 2500, 5000, 10000];
+const donationAmounts = [10, 25, 50, 100, 250];
 const defaultFunds = [
     { id: "general", name: "General Fund" },
     { id: "orphan-care", name: "Orphan Care" },
@@ -28,7 +28,7 @@ function DonateContent() {
     const searchParams = useSearchParams();
     const initialFund = searchParams.get("fund") || "general";
 
-    const [amount, setAmount] = useState<number | string>(1000);
+    const [amount, setAmount] = useState<number | string>(25);
     const [activeFunds, setActiveFunds] = useState(defaultFunds);
     const [selectedFund, setSelectedFund] = useState(initialFund);
 
@@ -53,7 +53,6 @@ function DonateContent() {
 
     const [step, setStep] = useState(1);
     const [donorInfo, setDonorInfo] = useState({ name: "", email: "" });
-    const [paymentMethod, setPaymentMethod] = useState<"razorpay" | "paypal">("razorpay");
 
     const handleAmountSelect = (val: number) => {
         setAmount(val);
@@ -143,7 +142,7 @@ function DonateContent() {
                                         </div>
 
                                         <div className="space-y-4">
-                                            <label className="text-xs font-bold uppercase tracking-widest text-foreground/40">Amount (INR)</label>
+                                            <label className="text-xs font-bold uppercase tracking-widest text-foreground/40">Amount (USD)</label>
                                             <div className="grid grid-cols-3 gap-3">
                                                 {donationAmounts.map((val) => (
                                                     <button
@@ -152,12 +151,12 @@ function DonateContent() {
                                                         className={`p-3 rounded-xl transition-all border ${amount === val ? "bg-primary text-white border-primary" : "bg-muted/50 border-transparent text-foreground/60 hover:bg-muted"
                                                             }`}
                                                     >
-                                                        ₹{val}
+                                                        ${val}
                                                     </button>
                                                 ))}
                                             </div>
                                             <div className="relative pt-2">
-                                                <IndianRupee className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-foreground/30" />
+                                                <DollarSign className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-foreground/30" />
                                                 <input
                                                     type="number"
                                                     value={amount}
@@ -240,80 +239,53 @@ function DonateContent() {
                                     >
                                         <div className="text-center space-y-2">
                                             <p className="text-sm font-bold uppercase tracking-widest text-primary">Summary</p>
-                                            <h3 className="text-4xl font-serif text-secondary group">₹{amount}</h3>
+                                            <h3 className="text-4xl font-serif text-secondary group">${amount}</h3>
                                             <p className="text-foreground/60">Supporting <span className="text-foreground font-medium">{activeFunds.find((f: any) => f.id === selectedFund)?.name}</span></p>
                                         </div>
 
                                         <div className="space-y-6">
-                                            <div className="flex bg-muted p-1 rounded-2xl">
-                                                <button
-                                                    onClick={() => setPaymentMethod("razorpay")}
-                                                    className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-medium transition-all ${paymentMethod === "razorpay" ? "bg-white shadow-sm text-primary" : "text-foreground/40"
-                                                        }`}
-                                                >
-                                                    <IndianRupee className="h-4 w-4" />
-                                                    Razorpay (India)
-                                                </button>
-                                                <button
-                                                    onClick={() => setPaymentMethod("paypal")}
-                                                    className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-medium transition-all ${paymentMethod === "paypal" ? "bg-white shadow-sm text-[#003087]" : "text-foreground/40"
-                                                        }`}
-                                                >
-                                                    <Globe className="h-4 w-4" />
-                                                    PayPal (Global)
-                                                </button>
-                                            </div>
-
-                                            {paymentMethod === "razorpay" ? (
-                                                <button className="w-full py-5 bg-black text-white rounded-full text-lg font-bold flex items-center justify-center gap-2">
-                                                    Pay Securely with Razorpay
-                                                </button>
-                                            ) : (
-                                                <PayPalScriptProvider options={{
-                                                    clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "test",
-                                                    currency: "USD"
-                                                }}>
-                                                    <PayPalButtons
-                                                        style={{ layout: "vertical", shape: "pill" }}
-                                                        createOrder={(data, actions) => {
-                                                            // Convert INR to USD for PayPal (Approx 1 INR = 0.012 USD)
-                                                            const usdAmount = (Number(amount) * 0.012).toFixed(2);
-                                                            return actions.order.create({
-                                                                intent: "CAPTURE",
-                                                                purchase_units: [
-                                                                    {
-                                                                        amount: {
-                                                                            currency_code: "USD",
-                                                                            value: usdAmount,
-                                                                        },
-                                                                        description: `Donation to OFHM - ${activeFunds.find((f: any) => f.id === selectedFund)?.name}`,
+                                            <PayPalScriptProvider options={{
+                                                clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "test",
+                                                currency: "USD"
+                                            }}>
+                                                <PayPalButtons
+                                                    style={{ layout: "vertical", shape: "pill" }}
+                                                    createOrder={(data, actions) => {
+                                                        return actions.order.create({
+                                                            intent: "CAPTURE",
+                                                            purchase_units: [
+                                                                {
+                                                                    amount: {
+                                                                        currency_code: "USD",
+                                                                        value: String(amount),
                                                                     },
-                                                                ],
-                                                            });
-                                                        }}
-                                                        onApprove={async (data, actions) => {
-                                                            if (actions.order) {
-                                                                const details = await actions.order.capture();
-                                                                try {
-                                                                    await fetch("/api/donations/paypal", {
-                                                                        method: "POST",
-                                                                        headers: { "Content-Type": "application/json" },
-                                                                        body: JSON.stringify({
-                                                                            orderId: data.orderID,
-                                                                            details: details,
-                                                                            fund: selectedFund
-                                                                        }),
-                                                                    });
-                                                                    setStep(4);
-                                                                } catch (error) {
-                                                                    console.error("Error saving donation:", error);
-                                                                    setStep(4); // Still show success UI but log error
-                                                                }
+                                                                    description: `Donation to OFHM - ${activeFunds.find((f: any) => f.id === selectedFund)?.name}`,
+                                                                },
+                                                            ],
+                                                        });
+                                                    }}
+                                                    onApprove={async (data, actions) => {
+                                                        if (actions.order) {
+                                                            const details = await actions.order.capture();
+                                                            try {
+                                                                await fetch("/api/donations/paypal", {
+                                                                    method: "POST",
+                                                                    headers: { "Content-Type": "application/json" },
+                                                                    body: JSON.stringify({
+                                                                        orderId: data.orderID,
+                                                                        details: details,
+                                                                        fund: selectedFund
+                                                                    }),
+                                                                });
+                                                                setStep(4);
+                                                            } catch (error) {
+                                                                console.error("Error saving donation:", error);
+                                                                setStep(4); // Still show success UI but log error
                                                             }
-                                                        }}
-                                                    />
-                                                </PayPalScriptProvider>
-                                            )}
+                                                        }
+                                                    }}
+                                                />
+                                            </PayPalScriptProvider>
                                         </div>
 
                                         <div className="flex items-center justify-center gap-2 text-xs text-foreground/40 pt-4">
