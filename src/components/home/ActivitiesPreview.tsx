@@ -28,6 +28,12 @@ const fallbackFeatured = [
         slug: "borewell-projects",
         images: ["/images/borewell-projects.png"],
         shortDescription: "Bringing clean drinking water to remote villages through sustainable borewells.",
+    },
+    {
+        title: "Church Plantation",
+        slug: "church-plantation",
+        images: ["/images/church-plantation.png"],
+        shortDescription: "Establishing vibrant spiritual communities in areas with no gospel presence.",
     }
 ];
 
