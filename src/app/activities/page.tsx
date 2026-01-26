@@ -62,6 +62,7 @@ const fallbackActivities = [
     {
         title: "Church Plantation",
         slug: "church-plantation",
+        images: ["/images/church-plantation.png"],
         shortDescription: "Establishing vibrant spiritual communities in areas with no gospel presence.",
     },
     {
