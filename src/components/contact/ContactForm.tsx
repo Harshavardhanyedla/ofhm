@@ -21,10 +21,26 @@ export default function ContactForm() {
     });
 
     const onSubmit = async (data: FormValues) => {
-        // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-        console.log(data);
-        alert("Thank you for your message! We will get back to you soon.");
+        try {
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                alert("Thank you for your message! It has been sent to our team.");
+            } else {
+                throw new Error(result.error || "Failed to send message");
+            }
+        } catch (error: any) {
+            console.error("Submission error:", error);
+            alert(error.message || "An unexpected error occurred. Please try again later.");
+        }
     };
 
     return (
