@@ -26,8 +26,12 @@ export async function POST(
         });
 
         return NextResponse.json(captureData);
-    } catch (error) {
-        console.error("PayPal Capture Error:", error);
-        return NextResponse.json({ error: "Failed to capture order" }, { status: 500 });
+    } catch (error: any) {
+        console.error("PayPal Capture Error Details:", JSON.stringify(error, null, 2));
+        console.error("PayPal Capture Error Message:", error.message);
+        return NextResponse.json(
+            { error: error.message || "Failed to capture order" },
+            { status: 500 }
+        );
     }
 }
