@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { ShieldCheck, DollarSign, CheckCircle2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useRef } from "react";
+import React, { useRef } from "react";
 import Script from "next/script";
 
 declare global {
@@ -16,6 +16,19 @@ declare global {
             'paypal-credit-button': any;
         }
     }
+}
+
+declare module 'react' {
+    namespace JSX {
+        interface IntrinsicElements {
+            'paypal-button': any;
+            'paypal-pay-later-button': any;
+            'paypal-credit-button': any;
+        }
+    }
+}
+
+declare global {
     interface Window {
         paypal: any;
         onPayPalWebSdkLoaded: () => void;
