@@ -5,7 +5,7 @@ const activities = [
     {
         title: "Orphan Care",
         slug: "orphan-care",
-        images: ["/images/orphan-care.png"]
+        images: ["/images/orphan-care.jpg"]
     },
     {
         title: "Old Age & Homeless Widows Care",

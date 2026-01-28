@@ -8,7 +8,7 @@ const fallbackFeatured = [
     {
         title: "Orphan Care",
         slug: "orphan-care",
-        images: ["/images/orphan-care.png"],
+        images: ["/images/orphan-care.jpg"],
         shortDescription: "Providing a loving home, education, and spiritual guidance to children in need since 1994.",
     },
     {
