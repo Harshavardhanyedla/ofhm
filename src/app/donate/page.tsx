@@ -5,7 +5,22 @@ import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { ShieldCheck, DollarSign, CheckCircle2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
+import { useRef } from "react";
+import Script from "next/script";
+
+declare global {
+    namespace JSX {
+        interface IntrinsicElements {
+            'paypal-button': any;
+            'paypal-pay-later-button': any;
+            'paypal-credit-button': any;
+        }
+    }
+    interface Window {
+        paypal: any;
+        onPayPalWebSdkLoaded: () => void;
+    }
+}
 
 const donationAmounts = [10, 25, 50, 100, 250];
 const defaultFunds = [
@@ -24,7 +39,7 @@ const defaultFunds = [
 
 import { Suspense, useEffect } from "react";
 
-function DonateContent() {
+function DonateContent({ sdkInitialized }: { sdkInitialized: boolean }) {
     const searchParams = useSearchParams();
     const initialFund = searchParams.get("fund") || "general";
 
@@ -53,6 +68,122 @@ function DonateContent() {
 
     const [step, setStep] = useState(1);
     const [donorInfo, setDonorInfo] = useState({ name: "", email: "" });
+    const paypalInstanceRef = useRef<any>(null);
+
+    // Initialize v6 components when step becomes 3
+    useEffect(() => {
+        if (step === 3 && sdkInitialized && window.paypal) {
+            const setupButtons = async () => {
+                try {
+                    const tokenRes = await fetch("/api/paypal/token", { method: "POST" });
+                    const { client_token } = await tokenRes.json();
+
+                    const sdkInstance = await window.paypal.createInstance({
+                        clientToken: client_token,
+                        components: ["paypal-payments"],
+                        pageType: "checkout",
+                    });
+
+                    const paymentMethods = await sdkInstance.findEligibleMethods({
+                        currencyCode: "USD",
+                    });
+
+                    const commonOptions = {
+                        async onApprove(data: any) {
+                            try {
+                                const captureRes = await fetch(`/api/paypal/orders/${data.orderId}/capture`, {
+                                    method: "POST",
+                                    headers: { "Content-Type": "application/json" },
+                                    body: JSON.stringify({ fund: selectedFund })
+                                });
+                                const captureData = await captureRes.json();
+                                if (captureData.status === "COMPLETED") {
+                                    setStep(4);
+                                } else {
+                                    alert("Payment capture failed. Please contact support.");
+                                }
+                            } catch (error) {
+                                console.error("Payment capture error:", error);
+                                setStep(4); // Still proceed but log it
+                            }
+                        },
+                        onCancel(data: any) {
+                            console.log("Payment cancelled:", data);
+                        },
+                        onError(error: any) {
+                            console.error("Payment error:", error);
+                            alert("A payment error occurred. Please try again.");
+                        },
+                    };
+
+                    if (paymentMethods.isEligible("paypal")) {
+                        const session = sdkInstance.createPayPalOneTimePaymentSession(commonOptions);
+                        const btn = document.getElementById("paypal-button-v6");
+                        if (btn) {
+                            btn.addEventListener("click", async () => {
+                                try {
+                                    const formattedAmount = typeof amount === "number" ? amount.toFixed(2) : parseFloat(String(amount)).toFixed(2);
+                                    await session.start(
+                                        { presentationMode: "auto" },
+                                        async () => {
+                                            const res = await fetch("/api/paypal/orders", {
+                                                method: "POST",
+                                                headers: { "Content-Type": "application/json" },
+                                                body: JSON.stringify({
+                                                    amount: formattedAmount,
+                                                    description: `Donation to OFHM - ${activeFunds.find((f: any) => f.id === selectedFund)?.name}`
+                                                })
+                                            });
+                                            const order = await res.json();
+                                            return { orderId: order.id };
+                                        }
+                                    );
+                                } catch (error) {
+                                    console.error("PayPal start error:", error);
+                                }
+                            });
+                        }
+                    }
+
+                    if (paymentMethods.isEligible("paylater")) {
+                        const { productCode, countryCode } = paymentMethods.getDetails("paylater");
+                        const session = sdkInstance.createPayLaterOneTimePaymentSession(commonOptions);
+                        const btn = document.getElementById("pay-later-button-v6") as any;
+                        if (btn) {
+                            btn.productCode = productCode;
+                            btn.countryCode = countryCode;
+                            btn.hidden = false;
+                            btn.addEventListener("click", async () => {
+                                try {
+                                    const formattedAmount = typeof amount === "number" ? amount.toFixed(2) : parseFloat(String(amount)).toFixed(2);
+                                    await session.start(
+                                        { presentationMode: "auto" },
+                                        async () => {
+                                            const res = await fetch("/api/paypal/orders", {
+                                                method: "POST",
+                                                headers: { "Content-Type": "application/json" },
+                                                body: JSON.stringify({
+                                                    amount: formattedAmount,
+                                                    description: `Donation to OFHM - ${activeFunds.find((f: any) => f.id === selectedFund)?.name}`
+                                                })
+                                            });
+                                            const order = await res.json();
+                                            return { orderId: order.id };
+                                        }
+                                    );
+                                } catch (error) {
+                                    console.error("PayLater start error:", error);
+                                }
+                            });
+                        }
+                    }
+                } catch (error) {
+                    console.error("Error setting up PayPal buttons:", error);
+                }
+            };
+            setupButtons();
+        }
+    }, [step, sdkInitialized, amount, selectedFund, activeFunds]);
 
     const handleAmountSelect = (val: number) => {
         setAmount(val);
@@ -244,52 +375,15 @@ function DonateContent() {
                                         </div>
 
                                         <div className="space-y-6">
-                                            <PayPalButtons
-                                                style={{ layout: "vertical", shape: "pill" }}
-                                                forceReRender={[amount, selectedFund]}
-                                                createOrder={(data, actions) => {
-                                                    const formattedAmount = typeof amount === "number" ? amount.toFixed(2) : parseFloat(String(amount)).toFixed(2);
-                                                    return actions.order.create({
-                                                        intent: "CAPTURE",
-                                                        purchase_units: [
-                                                            {
-                                                                amount: {
-                                                                    currency_code: "USD",
-                                                                    value: formattedAmount,
-                                                                },
-                                                                description: `Donation to OFHM - ${activeFunds.find((f: any) => f.id === selectedFund)?.name}`,
-                                                            },
-                                                        ],
-                                                    });
-                                                }}
-                                                onApprove={async (data, actions) => {
-                                                    if (actions.order) {
-                                                        const details = await actions.order.capture();
-                                                        try {
-                                                            await fetch("/api/donations/paypal", {
-                                                                method: "POST",
-                                                                headers: { "Content-Type": "application/json" },
-                                                                body: JSON.stringify({
-                                                                    orderId: data.orderID,
-                                                                    details: details,
-                                                                    fund: selectedFund
-                                                                }),
-                                                            });
-                                                            setStep(4);
-                                                        } catch (error) {
-                                                            console.error("Error saving donation:", error);
-                                                            setStep(4); // Still show success UI but log error
-                                                        }
-                                                    }
-                                                }}
-                                                onError={(err) => {
-                                                    console.error("PayPal Error:", err);
-                                                    alert("There was an error initializing PayPal. Please try again or contact us.");
-                                                }}
-                                                onCancel={() => {
-                                                    console.log("PayPal payment cancelled");
-                                                }}
-                                            />
+                                            <div className="buttons-container flex flex-col gap-4">
+                                                <paypal-button type="pay" id="paypal-button-v6"></paypal-button>
+                                                <paypal-pay-later-button id="pay-later-button-v6" hidden></paypal-pay-later-button>
+                                            </div>
+                                            {!sdkInitialized && (
+                                                <div className="text-center py-4">
+                                                    <p className="text-foreground/30 animate-pulse text-sm">Initializing secure payment...</p>
+                                                </div>
+                                            )}
                                         </div>
 
                                         <div className="flex items-center justify-center gap-2 text-xs text-foreground/40 pt-4">
@@ -340,20 +434,61 @@ function DonateContent() {
     );
 }
 
+
 export default function DonatePage() {
+    const [sdkInitialized, setSdkInitialized] = useState(false);
+
+    const initPayPalV6 = async () => {
+        try {
+            // 1. Get client token from server
+            const tokenRes = await fetch("/api/paypal/token", { method: "POST" });
+            const { client_token } = await tokenRes.json();
+
+            // 2. Create PayPal SDK instance
+            const sdkInstance = await window.paypal.createInstance({
+                clientToken: client_token,
+                components: ["paypal-payments"],
+                pageType: "checkout",
+            });
+
+            // 3. Check eligibility
+            const paymentMethods = await sdkInstance.findEligibleMethods({
+                currencyCode: "USD",
+            });
+
+            setSdkInitialized(true);
+
+            // We'll use a dynamic way to handle the button since it might not be in DOM yet
+            // or we use refs. But the buttons are only in Step 3.
+        } catch (error) {
+            console.error("SDK initialization error:", error);
+        }
+    };
+
+    useEffect(() => {
+        window.onPayPalWebSdkLoaded = initPayPalV6;
+    }, []);
+
     return (
-        <Suspense fallback={
-            <div className="w-full py-24 text-center">
-                <p className="text-foreground/50">Loading donation form...</p>
-            </div>
-        }>
-            <PayPalScriptProvider options={{
-                clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "test",
-                currency: "USD",
-                intent: "capture",
-            }}>
-                <DonateContent />
-            </PayPalScriptProvider>
-        </Suspense>
+        <>
+            <Script
+                src={process.env.NODE_ENV === "production"
+                    ? "https://www.paypal.com/web-sdk/v6/core"
+                    : "https://www.sandbox.paypal.com/web-sdk/v6/core"
+                }
+                onLoad={() => {
+                    console.log("PayPal v6 Core Script Loaded");
+                    if (window.paypal) initPayPalV6();
+                }}
+                strategy="afterInteractive"
+            />
+            <Suspense fallback={
+                <div className="w-full py-24 text-center">
+                    <p className="text-foreground/50">Loading donation form...</p>
+                </div>
+            }>
+                <DonateContent sdkInitialized={sdkInitialized} />
+            </Suspense>
+        </>
     );
 }
