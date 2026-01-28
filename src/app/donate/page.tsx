@@ -244,48 +244,52 @@ function DonateContent() {
                                         </div>
 
                                         <div className="space-y-6">
-                                            <PayPalScriptProvider options={{
-                                                clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "test",
-                                                currency: "USD"
-                                            }}>
-                                                <PayPalButtons
-                                                    style={{ layout: "vertical", shape: "pill" }}
-                                                    createOrder={(data, actions) => {
-                                                        return actions.order.create({
-                                                            intent: "CAPTURE",
-                                                            purchase_units: [
-                                                                {
-                                                                    amount: {
-                                                                        currency_code: "USD",
-                                                                        value: String(amount),
-                                                                    },
-                                                                    description: `Donation to OFHM - ${activeFunds.find((f: any) => f.id === selectedFund)?.name}`,
+                                            <PayPalButtons
+                                                style={{ layout: "vertical", shape: "pill" }}
+                                                forceReRender={[amount, selectedFund]}
+                                                createOrder={(data, actions) => {
+                                                    const formattedAmount = typeof amount === "number" ? amount.toFixed(2) : parseFloat(String(amount)).toFixed(2);
+                                                    return actions.order.create({
+                                                        intent: "CAPTURE",
+                                                        purchase_units: [
+                                                            {
+                                                                amount: {
+                                                                    currency_code: "USD",
+                                                                    value: formattedAmount,
                                                                 },
-                                                            ],
-                                                        });
-                                                    }}
-                                                    onApprove={async (data, actions) => {
-                                                        if (actions.order) {
-                                                            const details = await actions.order.capture();
-                                                            try {
-                                                                await fetch("/api/donations/paypal", {
-                                                                    method: "POST",
-                                                                    headers: { "Content-Type": "application/json" },
-                                                                    body: JSON.stringify({
-                                                                        orderId: data.orderID,
-                                                                        details: details,
-                                                                        fund: selectedFund
-                                                                    }),
-                                                                });
-                                                                setStep(4);
-                                                            } catch (error) {
-                                                                console.error("Error saving donation:", error);
-                                                                setStep(4); // Still show success UI but log error
-                                                            }
+                                                                description: `Donation to OFHM - ${activeFunds.find((f: any) => f.id === selectedFund)?.name}`,
+                                                            },
+                                                        ],
+                                                    });
+                                                }}
+                                                onApprove={async (data, actions) => {
+                                                    if (actions.order) {
+                                                        const details = await actions.order.capture();
+                                                        try {
+                                                            await fetch("/api/donations/paypal", {
+                                                                method: "POST",
+                                                                headers: { "Content-Type": "application/json" },
+                                                                body: JSON.stringify({
+                                                                    orderId: data.orderID,
+                                                                    details: details,
+                                                                    fund: selectedFund
+                                                                }),
+                                                            });
+                                                            setStep(4);
+                                                        } catch (error) {
+                                                            console.error("Error saving donation:", error);
+                                                            setStep(4); // Still show success UI but log error
                                                         }
-                                                    }}
-                                                />
-                                            </PayPalScriptProvider>
+                                                    }
+                                                }}
+                                                onError={(err) => {
+                                                    console.error("PayPal Error:", err);
+                                                    alert("There was an error initializing PayPal. Please try again or contact us.");
+                                                }}
+                                                onCancel={() => {
+                                                    console.log("PayPal payment cancelled");
+                                                }}
+                                            />
                                         </div>
 
                                         <div className="flex items-center justify-center gap-2 text-xs text-foreground/40 pt-4">
@@ -343,7 +347,13 @@ export default function DonatePage() {
                 <p className="text-foreground/50">Loading donation form...</p>
             </div>
         }>
-            <DonateContent />
+            <PayPalScriptProvider options={{
+                clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "test",
+                currency: "USD",
+                intent: "capture",
+            }}>
+                <DonateContent />
+            </PayPalScriptProvider>
         </Suspense>
     );
 }
