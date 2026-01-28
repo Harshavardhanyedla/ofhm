@@ -15,7 +15,7 @@ const activities = [
     {
         title: "Discipleship Training Programs",
         slug: "discipleship-training",
-        images: ["/images/discipleship-v2.png"]
+        images: ["/images/discipleship-training.jpg"]
     },
     {
         title: "Outreach to Unreached Tribal Villages",

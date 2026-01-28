@@ -20,7 +20,7 @@ const fallbackFeatured = [
     {
         title: "Discipleship Training Programs",
         slug: "discipleship-training",
-        images: ["/images/discipleship-v2.png"],
+        images: ["/images/discipleship-training.jpg"],
         shortDescription: "Equipping leaders and believers through intensive biblical training and spiritual mentorship.",
     },
     {
