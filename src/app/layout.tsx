@@ -49,8 +49,8 @@ export const metadata: Metadata = {
   }
 };
 
-import dbConnect from "@/lib/mongodb";
-import SiteSettings from "@/models/SiteSettings";
+import { getDocuments } from "@/lib/firestore";
+import { ISiteSettings } from "@/models/SiteSettings";
 
 export const dynamic = "force-dynamic";
 
@@ -59,10 +59,10 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  let settings = null;
+  let settings: (ISiteSettings & { _id: string }) | undefined = undefined;
   try {
-    await dbConnect();
-    settings = await SiteSettings.findOne({});
+    const settingsDocs = await getDocuments<ISiteSettings>("siteSettings");
+    if (settingsDocs.length > 0) settings = settingsDocs[0];
   } catch (error) {
     console.error("Database connection error in RootLayout:", error);
   }

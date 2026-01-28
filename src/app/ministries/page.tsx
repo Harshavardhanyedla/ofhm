@@ -1,5 +1,5 @@
-import dbConnect from "@/lib/mongodb";
-import Ministry from "@/models/Ministry";
+import { getDocuments } from "@/lib/firestore";
+import { IMinistry } from "@/models/Ministry";
 import MinistriesClient from "@/components/ministries/MinistriesClient";
 import type { Metadata } from 'next';
 
@@ -11,16 +11,16 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 export default async function MinistriesPage() {
-    let ministriesData = [];
+    let ministriesData: (IMinistry & { _id: string })[] = [];
     try {
-        await dbConnect();
-        ministriesData = await Ministry.find({}).sort({ order: 1 });
+        ministriesData = await getDocuments<IMinistry>("ministries");
+        ministriesData.sort((a, b) => (a.order || 0) - (b.order || 0));
     } catch (error) {
         console.error("Database connection error on Ministries page:", error);
     }
 
     interface MinistryDoc {
-        _id: { toString: () => string };
+        _id: string;
         title: string;
         description: string;
         impactSummary: string;

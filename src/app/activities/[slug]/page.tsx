@@ -1,17 +1,24 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Heart, ShieldCheck, MapPin, Target, Quote } from "lucide-react";
-import dbConnect from "@/lib/mongodb";
-import Activity from "@/models/Activity";
 
 export const dynamic = "force-dynamic";
 
+import { getDocumentByField } from "@/lib/firestore";
+import { IActivity } from "@/models/Activity";
+
 async function getActivity(slug: string) {
     try {
-        await dbConnect();
-        const activity = await Activity.findOne({ slug });
+        const activity = await getDocumentByField<IActivity>("activities", "slug", slug);
         if (!activity) return null;
-        return JSON.parse(JSON.stringify(activity));
+
+        // Convert any Firestore Timestamps to Dates if necessary, or just pass as is if not used.
+        // For Next.js serialization, we might need to convert dates to strings or use the JSON hack
+        // if we were passing to a client component. But here we are in a server component mostly.
+        // However, ActivityContent might be a client component? No, it's defined in the same file as a function.
+        // But if we pass complex objects like Timestamps to it, it's fine as long as it's Server Component.
+
+        return activity;
     } catch (error) {
         console.error("Error fetching activity:", error);
         return null;

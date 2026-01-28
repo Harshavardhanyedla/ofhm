@@ -1,6 +1,6 @@
 import { Mail, Phone, MapPin, MessageSquare } from "lucide-react";
-import dbConnect from "@/lib/mongodb";
-import SiteSettings from "@/models/SiteSettings";
+import { getDocuments } from "@/lib/firestore";
+import { ISiteSettings } from "@/models/SiteSettings";
 import ContactForm from "@/components/contact/ContactForm";
 import type { Metadata } from 'next';
 
@@ -14,8 +14,8 @@ export const dynamic = "force-dynamic";
 export default async function ContactPage() {
     let settings = null;
     try {
-        await dbConnect();
-        settings = await SiteSettings.findOne({});
+        const docs = await getDocuments<ISiteSettings>("siteSettings");
+        if (docs.length > 0) settings = docs[0];
     } catch (error) {
         console.error("Database connection error on Contact page:", error);
     }

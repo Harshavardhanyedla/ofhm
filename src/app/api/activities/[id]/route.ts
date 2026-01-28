@@ -1,21 +1,18 @@
 import { NextResponse } from "next/server";
-import dbConnect from "@/lib/mongodb";
-import Activity from "@/models/Activity";
-import mongoose from "mongoose";
+import { getDocumentById, getDocumentByField, updateDocument, deleteDocument } from "@/lib/firestore";
+import { IActivity } from "@/models/Activity";
 
 export async function GET(
     req: Request,
     { params }: { params: Promise<{ id: string }> }
 ) {
     try {
-        await dbConnect();
         const { id } = await params;
 
-        let activity;
-        if (mongoose.Types.ObjectId.isValid(id)) {
-            activity = await Activity.findById(id);
-        } else {
-            activity = await Activity.findOne({ slug: id });
+        let activity = await getDocumentById<IActivity>("activities", id);
+
+        if (!activity) {
+            activity = await getDocumentByField<IActivity>("activities", "slug", id);
         }
 
         if (!activity) {
@@ -33,17 +30,25 @@ export async function PUT(
     { params }: { params: Promise<{ id: string }> }
 ) {
     try {
-        await dbConnect();
         const { id } = await params;
         const data = await req.json();
 
-        const activity = await Activity.findByIdAndUpdate(id, data, { new: true });
-
+        // Check if id is a slug or real ID.
+        // If it's a slug, we need to find the real ID first.
+        let docId = id;
+        let activity = await getDocumentById<IActivity>("activities", id);
         if (!activity) {
-            return NextResponse.json({ error: "Activity not found" }, { status: 404 });
+            activity = await getDocumentByField<IActivity>("activities", "slug", id);
+            if (activity && activity._id) docId = activity._id;
+            else if (!activity) return NextResponse.json({ error: "Activity not found" }, { status: 404 });
         }
 
-        return NextResponse.json(activity);
+        await updateDocument<IActivity>("activities", docId, data);
+
+        // Return updated document
+        const updatedActivity = await getDocumentById<IActivity>("activities", docId);
+
+        return NextResponse.json(updatedActivity);
     } catch (error) {
         return NextResponse.json({ error: "Failed to update activity" }, { status: 500 });
     }
@@ -54,14 +59,17 @@ export async function DELETE(
     { params }: { params: Promise<{ id: string }> }
 ) {
     try {
-        await dbConnect();
         const { id } = await params;
 
-        const activity = await Activity.findByIdAndDelete(id);
-
+        let docId = id;
+        let activity = await getDocumentById<IActivity>("activities", id);
         if (!activity) {
-            return NextResponse.json({ error: "Activity not found" }, { status: 404 });
+            activity = await getDocumentByField<IActivity>("activities", "slug", id);
+            if (activity && activity._id) docId = activity._id;
+            else if (!activity) return NextResponse.json({ error: "Activity not found" }, { status: 404 });
         }
+
+        await deleteDocument("activities", docId);
 
         return NextResponse.json({ message: "Activity deleted successfully" });
     } catch (error) {

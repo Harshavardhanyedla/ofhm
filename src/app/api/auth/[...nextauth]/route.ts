@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import dbConnect from "@/lib/mongodb";
-import User from "@/models/User";
+import { getDocumentByField } from "@/lib/firestore";
+import { IUser } from "@/models/User";
 import bcrypt from "bcryptjs";
 
 export const authOptions = {
@@ -15,8 +15,7 @@ export const authOptions = {
             async authorize(credentials) {
                 if (!credentials?.email || !credentials?.password) return null;
 
-                await dbConnect();
-                const user = await User.findOne({ email: credentials.email });
+                const user = await getDocumentByField<IUser>("users", "email", credentials.email);
 
                 if (!user) return null;
 
@@ -25,7 +24,7 @@ export const authOptions = {
                 if (!isValid) return null;
 
                 return {
-                    id: user._id.toString(),
+                    id: user._id!,
                     email: user.email,
                     name: user.name,
                     role: user.role,

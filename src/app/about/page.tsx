@@ -1,6 +1,6 @@
 import { Mail } from 'lucide-react';
-import dbConnect from "@/lib/mongodb";
-import Founder from "@/models/Founder";
+import { getDocuments } from "@/lib/firestore";
+import { IFounder } from "@/models/Founder";
 import type { Metadata } from 'next';
 import Image from 'next/image';
 
@@ -14,8 +14,8 @@ export const dynamic = "force-dynamic";
 export default async function AboutPage() {
     let founderData = null;
     try {
-        await dbConnect();
-        founderData = await Founder.findOne({});
+        const docs = await getDocuments<IFounder>("founders");
+        if (docs.length > 0) founderData = docs[0];
     } catch (error) {
         console.error("Database connection error on About page:", error);
     }

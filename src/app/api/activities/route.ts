@@ -1,26 +1,34 @@
 import { NextResponse } from "next/server";
-import dbConnect from "@/lib/mongodb";
-import Activity from "@/models/Activity";
+import { db } from "@/lib/firebase";
+import { collection, query, where, orderBy, getDocs, addDoc } from "firebase/firestore";
 
 export async function GET(req: Request) {
     try {
-        await dbConnect();
         const { searchParams } = new URL(req.url);
         const featured = searchParams.get("featured") === "true";
 
-        const query = featured ? { isFeatured: true } : {};
-        const activities = await Activity.find(query).sort({ order: 1 });
+        const activitiesRef = collection(db, "activities");
+        let q;
+
+        // Note: Composite index may be required for where() + orderBy() on different fields
+        if (featured) {
+            q = query(activitiesRef, where("isFeatured", "==", true), orderBy("order", "asc"));
+        } else {
+            q = query(activitiesRef, orderBy("order", "asc"));
+        }
+
+        const snapshot = await getDocs(q);
+        const activities = snapshot.docs.map(doc => ({ _id: doc.id, ...doc.data() }));
 
         return NextResponse.json(activities);
     } catch (error) {
+        console.error("Error fetching activities:", error);
         return NextResponse.json({ error: "Failed to fetch activities" }, { status: 500 });
     }
 }
 
 export async function POST(req: Request) {
     try {
-        await dbConnect();
-        // Simple auth check could go here if using NextAuth session
         const data = await req.json();
 
         // Generate slug from title if not provided
@@ -28,8 +36,8 @@ export async function POST(req: Request) {
             data.slug = data.title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
         }
 
-        const activity = await Activity.create(data);
-        return NextResponse.json(activity, { status: 201 });
+        const docRef = await addDoc(collection(db, "activities"), data);
+        return NextResponse.json({ _id: docRef.id, ...data }, { status: 201 });
     } catch (error) {
         return NextResponse.json({
             error: error instanceof Error ? error.message : "Failed to create activity"

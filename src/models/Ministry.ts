@@ -1,6 +1,5 @@
-import mongoose, { Schema, Document } from 'mongoose';
-
-export interface IMinistry extends Document {
+export interface IMinistry {
+    _id?: string;
     title: string;
     description: string;
     image: string;
@@ -8,16 +7,6 @@ export interface IMinistry extends Document {
     scriptureText?: string;
     scriptureRef?: string;
     order: number;
+    createdAt?: Date;
+    updatedAt?: Date;
 }
-
-const MinistrySchema: Schema = new Schema({
-    title: { type: String, required: true },
-    description: { type: String, required: true },
-    image: { type: String, required: true },
-    impactSummary: { type: String },
-    scriptureText: { type: String },
-    scriptureRef: { type: String },
-    order: { type: Number, default: 0 },
-}, { timestamps: true });
-
-export default mongoose.models.Ministry || mongoose.model<IMinistry>('Ministry', MinistrySchema);

@@ -1,6 +1,6 @@
-import dbConnect from "@/lib/mongodb";
-import SiteSettings from "@/models/SiteSettings";
-import Impact from "@/models/Impact";
+import { getDocuments } from "@/lib/firestore";
+import { ISiteSettings } from "@/models/SiteSettings";
+import { IImpact } from "@/models/Impact";
 import Hero from "@/components/home/Hero";
 import ImpactSection from "@/components/home/ImpactSection";
 import ActivitiesPreview from "@/components/home/ActivitiesPreview";
@@ -17,9 +17,13 @@ export default async function Home() {
   let impactData = null;
 
   try {
-    await dbConnect();
-    settings = await SiteSettings.findOne({});
-    impactData = await Impact.findOne({});
+    const [settingsDocs, impactDocs] = await Promise.all([
+      getDocuments<ISiteSettings>("siteSettings"),
+      getDocuments<IImpact>("impacts")
+    ]);
+
+    if (settingsDocs.length > 0) settings = settingsDocs[0];
+    if (impactDocs.length > 0) impactData = impactDocs[0];
   } catch (error) {
     console.error("Database connection error on Home page:", error);
   }

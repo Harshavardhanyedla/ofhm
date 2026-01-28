@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { capturePayPalOrder } from "@/lib/paypal";
-import dbConnect from "@/lib/mongodb";
-import Donation from "@/models/Donation";
+import { createDocument } from "@/lib/firestore";
 
 export async function POST(
     req: Request,
@@ -14,17 +13,16 @@ export async function POST(
         const captureData = await capturePayPalOrder(orderId);
 
         // Save to DB
-        await dbConnect();
-
-        await Donation.create({
+        await createDocument("donations", {
             donorName: `${captureData.payer.name.given_name} ${captureData.payer.name.surname}`,
             email: captureData.payer.email_address,
-            amount: captureData.purchase_units[0].payments.captures[0].amount.value,
-            currency: captureData.purchase_units[0].payments.captures[0].amount.currency_code,
-            fund: fund,
+            amount: captureData.purchase_units[0].payments.captures[0]?.amount?.value,
+            currency: captureData.purchase_units[0].payments.captures[0]?.amount?.currency_code,
+            fund: fund || "General",
             status: "completed",
             paymentProvider: "paypal",
             paymentId: orderId,
+            date: new Date(),
         });
 
         return NextResponse.json(captureData);

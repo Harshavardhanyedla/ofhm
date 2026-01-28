@@ -1,6 +1,5 @@
-import mongoose, { Schema, Document } from 'mongoose';
-
-export interface ISiteSettings extends Document {
+export interface ISiteSettings {
+    _id?: string;
     heroStatements: string[];
     footerSummary: string;
     contact: {
@@ -11,27 +10,11 @@ export interface ISiteSettings extends Document {
             pin: string;
             state: string;
             country: string;
+            geo?: { lat: number, lng: number }; // Future proofing
         };
         phone: string;
         email: string;
     };
+    createdAt?: Date;
+    updatedAt?: Date;
 }
-
-const SiteSettingsSchema: Schema = new Schema({
-    heroStatements: [{ type: String }],
-    footerSummary: { type: String },
-    contact: {
-        address: {
-            line1: { type: String },
-            line2: { type: String },
-            city: { type: String },
-            pin: { type: String },
-            state: { type: String },
-            country: { type: String },
-        },
-        phone: { type: String },
-        email: { type: String },
-    },
-}, { timestamps: true });
-
-export default mongoose.models.SiteSettings || mongoose.model<ISiteSettings>('SiteSettings', SiteSettingsSchema);

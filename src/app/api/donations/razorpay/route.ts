@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import Razorpay from "razorpay";
-import dbConnect from "@/lib/mongodb";
-import Donation from "@/models/Donation";
+import { createDocument } from "@/lib/firestore";
 
 export async function POST(req: Request) {
     try {
@@ -16,8 +15,6 @@ export async function POST(req: Request) {
 
         const { amount, fund, donorInfo } = await req.json();
 
-        await dbConnect();
-
         const options = {
             amount: Number(amount) * 100, // amount in paise
             currency: "INR",
@@ -27,7 +24,7 @@ export async function POST(req: Request) {
         const order = await razorpay.orders.create(options);
 
         // Save pending donation to DB
-        await Donation.create({
+        await createDocument("donations", {
             donorName: donorInfo.name,
             email: donorInfo.email,
             amount: amount,
@@ -36,6 +33,7 @@ export async function POST(req: Request) {
             status: "pending",
             paymentProvider: "razorpay",
             orderId: order.id,
+            date: new Date(),
         });
 
         return NextResponse.json({

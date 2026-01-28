@@ -1,6 +1,5 @@
-import mongoose, { Schema, Document } from 'mongoose';
-
-export interface IDonation extends Document {
+export interface IDonation {
+    _id?: string;
     donorName: string;
     email: string;
     amount: number;
@@ -11,19 +10,6 @@ export interface IDonation extends Document {
     paymentId: string;
     orderId?: string;
     date: Date;
+    createdAt?: Date;
+    updatedAt?: Date;
 }
-
-const DonationSchema: Schema = new Schema({
-    donorName: { type: String, required: true },
-    email: { type: String, required: true },
-    amount: { type: Number, required: true },
-    currency: { type: String, default: 'USD' },
-    fund: { type: String, default: 'General' },
-    status: { type: String, enum: ['pending', 'completed', 'failed'], default: 'pending' },
-    paymentProvider: { type: String, enum: ['paypal'], required: true },
-    paymentId: { type: String },
-    orderId: { type: String },
-    date: { type: Date, default: Date.now },
-}, { timestamps: true });
-
-export default mongoose.models.Donation || mongoose.model<IDonation>('Donation', DonationSchema);

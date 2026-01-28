@@ -1,15 +1,14 @@
 import Link from "next/link";
-import { Heart, ArrowRight } from "lucide-react";
-import dbConnect from "@/lib/mongodb";
-import Activity from "@/models/Activity";
+import { getDocuments } from "@/lib/firestore";
+import { IActivity } from "@/models/Activity";
 
 export const dynamic = "force-dynamic";
 
 async function getActivities() {
     try {
-        await dbConnect();
-        const activities = await Activity.find({}).sort({ order: 1 });
-        return JSON.parse(JSON.stringify(activities));
+        const activities = await getDocuments<IActivity>("activities");
+        // Sort by order manually since we fetched all
+        return activities.sort((a, b) => (a.order || 0) - (b.order || 0));
     } catch (error) {
         console.error("Error fetching activities:", error);
         return [];
