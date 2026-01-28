@@ -5,10 +5,10 @@ import Donation from "@/models/Donation";
 
 export async function POST(
     req: Request,
-    { params }: { params: { orderId: string } }
+    { params }: { params: Promise<{ orderId: string }> }
 ) {
     try {
-        const { orderId } = params;
+        const { orderId } = await params;
         const { fund } = await req.json();
 
         const captureData = await capturePayPalOrder(orderId);
