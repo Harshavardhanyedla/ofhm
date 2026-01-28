@@ -264,16 +264,22 @@ export default function DonatePage() {
                                                                         description: `Donation to OFHM - ${activeFunds.find((f: any) => f.id === selectedFund)?.name}`
                                                                     }),
                                                                 });
+
                                                                 const order = await response.json();
+
+                                                                if (!response.ok) {
+                                                                    throw new Error(order.error || "Server failed to create order");
+                                                                }
+
                                                                 if (order.id) {
                                                                     return order.id;
                                                                 } else {
-                                                                    throw new Error("Failed to create order");
+                                                                    throw new Error("Invalid order ID received from server");
                                                                 }
-                                                            } catch (err) {
+                                                            } catch (err: any) {
                                                                 console.error("Create Order Error: ", err);
-                                                                // Handle error (maybe show an alert)
-                                                                throw err;
+                                                                alert(`Payment Initialization Failed: ${err.message}`);
+                                                                throw err; // Re-throw to cancel the popup
                                                             }
                                                         }}
                                                         onApprove={async (data, actions) => {
@@ -285,20 +291,24 @@ export default function DonatePage() {
                                                                 });
                                                                 const captureData = await captureRes.json();
 
-                                                                if (captureData.status === "COMPLETED") {
+                                                                if (captureRes.ok && captureData.status === "COMPLETED") {
                                                                     setStep(4);
                                                                 } else {
                                                                     console.error("Capture Failed", captureData);
-                                                                    alert("Payment was approved but capture failed.");
+                                                                    alert(`Payment Failed: ${captureData.error || "Transaction was approved but capture failed."}`);
                                                                 }
-                                                            } catch (err) {
+                                                            } catch (err: any) {
                                                                 console.error("Capture Error: ", err);
-                                                                alert("An error occurred during payment capture.");
+                                                                alert("An error occurred during payment capture. Please check your internet connection.");
                                                             }
                                                         }}
-                                                        onError={(err) => {
-                                                            console.error("PayPal Error:", err);
-                                                            alert("PayPal Payment Error. Please see console for details.");
+                                                        onError={(err: any) => {
+                                                            console.error("PayPal Widget Error:", err);
+                                                            // Check for common "window closed" error which is actually user cancellation or policy block
+                                                            if (String(err).includes("closed")) {
+                                                                return; // Ignore manual closures
+                                                            }
+                                                            alert("PayPal Error: The payment window closed unexpectedly. This usually happens if:\n1. You are trying to pay yourself (India-to-India restriction).\n2. Your internet connection blocked the popup.");
                                                         }}
                                                     />
                                                 </div>
