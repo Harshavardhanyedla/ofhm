@@ -3,7 +3,11 @@ import https from "https";
 
 const PAYPAL_CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID;
 const PAYPAL_CLIENT_SECRET = process.env.PAYPAL_CLIENT_SECRET;
-const BASE_URL = process.env.NODE_ENV === "production"
+
+// Determine environment: Default to sandbox unless explicitly set to 'live'
+const PAYPAL_MODE = process.env.NEXT_PUBLIC_PAYPAL_MODE || (process.env.NODE_ENV === "production" ? "live" : "sandbox");
+
+const BASE_URL = PAYPAL_MODE === "live"
     ? "https://api-m.paypal.com"
     : "https://api-m.sandbox.paypal.com";
 
