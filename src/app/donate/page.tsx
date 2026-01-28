@@ -78,11 +78,24 @@ export default function DonatePage() {
         }
     };
 
+    const [debugError, setDebugError] = useState<string>("");
+
     return (
         <PayPalScriptProvider options={initialOptions}>
             <div className="w-full">
+                {/* ... (Existing sections) ... */}
+
+                {/* Visual Debug Section (Temporary) */}
+                <div className="bg-gray-100 p-4 text-xs font-mono break-all text-left mt-8 container mx-auto rounded">
+                    <p><strong>Debug Info:</strong></p>
+                    <p>Client ID Loaded: {initialOptions.clientId ? "YES" : "NO"} ({initialOptions.clientId?.substring(0, 4)}...)</p>
+                    <p>Currency: {initialOptions.currency}</p>
+                    {debugError && <p className="text-red-600 font-bold mt-2">LAST ERROR: {debugError}</p>}
+                </div>
+
                 {/* Header */}
                 <section className="bg-muted py-24 pb-12">
+                    {/* ... same as before ... */}
                     <div className="container mx-auto px-4 md:px-6 text-center max-w-3xl mx-auto space-y-6">
                         <h2 className="text-sm font-bold uppercase tracking-widest text-primary">Make a Gift</h2>
                         <h1 className="text-4xl md:text-6xl font-serif text-foreground">Support Our Ministry</h1>
@@ -278,8 +291,10 @@ export default function DonatePage() {
                                                                 }
                                                             } catch (err: any) {
                                                                 console.error("Create Order Error: ", err);
-                                                                alert(`Payment Initialization Failed: ${err.message}`);
-                                                                throw err; // Re-throw to cancel the popup
+                                                                const msg = `Payment Init Failed: ${err.message}`;
+                                                                setDebugError(msg);
+                                                                alert(msg);
+                                                                throw err;
                                                             }
                                                         }}
                                                         onApprove={async (data, actions) => {
@@ -295,20 +310,24 @@ export default function DonatePage() {
                                                                     setStep(4);
                                                                 } else {
                                                                     console.error("Capture Failed", captureData);
-                                                                    alert(`Payment Failed: ${captureData.error || "Transaction was approved but capture failed."}`);
+                                                                    const msg = `Capture Failed: ${captureData.error || "Unknown error"}`;
+                                                                    setDebugError(msg);
+                                                                    alert(msg);
                                                                 }
                                                             } catch (err: any) {
                                                                 console.error("Capture Error: ", err);
-                                                                alert("An error occurred during payment capture. Please check your internet connection.");
+                                                                const msg = "Capture Network Error. Check console.";
+                                                                setDebugError(msg);
+                                                                alert(msg);
                                                             }
                                                         }}
                                                         onError={(err: any) => {
                                                             console.error("PayPal Widget Error:", err);
-                                                            // Check for common "window closed" error which is actually user cancellation or policy block
-                                                            if (String(err).includes("closed")) {
-                                                                return; // Ignore manual closures
-                                                            }
-                                                            alert("PayPal Error: The payment window closed unexpectedly. This usually happens if:\n1. You are trying to pay yourself (India-to-India restriction).\n2. Your internet connection blocked the popup.");
+                                                            const strErr = String(err);
+                                                            if (strErr.includes("closed")) return;
+                                                            const msg = `Widget Error: ${strErr}`;
+                                                            setDebugError(msg);
+                                                            alert(msg);
                                                         }}
                                                     />
                                                 </div>
