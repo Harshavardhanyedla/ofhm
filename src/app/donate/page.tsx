@@ -26,8 +26,11 @@ const initialOptions = {
     clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "",
     currency: "USD",
     intent: "capture",
-    components: "buttons", // Explicitly request buttons component
-    "environment": (process.env.NEXT_PUBLIC_PAYPAL_MODE === "live" ? "production" : "sandbox") as "production" | "sandbox",
+    components: "buttons",
+    // Synchronize mode with backend logic
+    "environment": (process.env.NEXT_PUBLIC_PAYPAL_MODE === "live" ||
+        (!process.env.NEXT_PUBLIC_PAYPAL_MODE && process.env.NODE_ENV === "production"))
+        ? "production" : "sandbox" as "production" | "sandbox",
 };
 
 export default function DonatePage() {
@@ -266,7 +269,7 @@ export default function DonatePage() {
                                                 <div className="buttons-container min-h-[150px]">
                                                     <PayPalButtons
                                                         style={{ layout: "vertical", shape: "pill", label: "donate" }}
-                                                        fundingSource="paypal" // Force PayPal Wallet button
+                                                        // Removed fundingSource="paypal" to allow more payment methods (Credit/Debit) if Wallet is unavailable
                                                         createOrder={async (data, actions) => {
                                                             try {
                                                                 const formattedAmount = typeof amount === "number" ? amount.toFixed(2) : parseFloat(String(amount)).toFixed(2);

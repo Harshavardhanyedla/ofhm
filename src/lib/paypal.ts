@@ -5,8 +5,9 @@ const PAYPAL_CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID;
 const PAYPAL_CLIENT_SECRET = process.env.PAYPAL_CLIENT_SECRET;
 
 // Determine environment: Default to sandbox unless explicitly set to 'live'
-// We prioritize NEXT_PUBLIC_PAYPAL_MODE as it's easier to control across environments
-const PAYPAL_MODE = (process.env.NEXT_PUBLIC_PAYPAL_MODE as "sandbox" | "live") || "sandbox";
+// We prioritize NEXT_PUBLIC_PAYPAL_MODE, otherwise we detect from NODE_ENV
+const PAYPAL_MODE = (process.env.NEXT_PUBLIC_PAYPAL_MODE as "sandbox" | "live") ||
+    (process.env.NODE_ENV === "production" ? "live" : "sandbox");
 
 console.log(`[PayPal] Initializing in ${PAYPAL_MODE} mode`);
 
