@@ -12,7 +12,7 @@ export default function AboutPreview() {
                     <div className="relative group">
                         <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden border-8 border-white shadow-2xl transform -rotate-2 group-hover:rotate-0 transition-transform duration-700">
                             <img
-                                src="/images/founder.jpg"
+                                src="/images/founder-home.png"
                                 alt="Dr. Gandham Buli Veerraju"
                                 className="object-cover w-full h-full"
                             />
