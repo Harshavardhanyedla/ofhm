@@ -5,9 +5,9 @@ import { ArrowRight, Image as ImageIcon } from "lucide-react";
 import { motion } from "framer-motion";
 
 const previewImages = [
-    { src: '/images/orphan-prayer.png', title: 'Orphan Care' },
-    { src: '/images/eye-medical-care-v3.png', title: 'Medical Camp' },
-    { src: '/images/tribal-outreach-v3.png', title: 'Tribal Outreach' },
+    { src: '/images/orphan-shoe-distribution.jpg', title: 'Orphan Care' },
+    { src: '/images/tribal-outreach-v5.jpg', title: 'Tribal Outreach' },
+    { src: '/images/widow-care-v3.jpg', title: 'Widow Care' },
 ];
 
 export default function GalleryPreview() {

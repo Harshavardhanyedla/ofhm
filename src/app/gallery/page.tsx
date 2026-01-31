@@ -5,15 +5,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
 const galleryImages = [
-    { src: '/images/orphan-care.png', title: 'Orphan Care Mission' },
-    { src: '/images/widow-care.png', title: 'Widow Support' },
+    { src: '/images/orphan-care-v2.jpg', title: 'Orphan Care Mission' },
+    { src: '/images/widow-care-v3.jpg', title: 'Widow Support' },
     { src: '/images/discipleship-v2.png', title: 'Discipleship Training' },
-    { src: '/images/tribal-outreach-v3.png', title: 'Tribal Outreach' },
+    { src: '/images/tribal-outreach-v5.jpg', title: 'Tribal Outreach' },
     { src: '/images/eye-medical-care-v3.png', title: 'Eye Medical Camp' },
     { src: '/images/bible-distribution.png', title: 'Bible Distribution' },
     { src: '/images/borewell-projects.png', title: 'Borewell Projects' },
-    { src: '/images/church-plantation.png', title: 'Church Plantation' },
-    { src: '/images/food-distribution.png', title: 'Food Distribution' },
+    { src: '/images/church-plantation-v3.png', title: 'Church Plantation' },
+    { src: '/images/food-distribution-v3.jpg', title: 'Food Distribution' },
+    { src: '/images/orphan-shoe-distribution.jpg', title: 'Gift Distribution' },
     { src: '/images/self-sustainable-v2.png', title: 'Self-Sustainable Projects' },
     { src: '/images/orphan-prayer.png', title: 'Orphan Care Prayer' },
     { src: '/images/orphan-group.jpg', title: 'Orphan Care Group' },
