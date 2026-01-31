@@ -43,13 +43,7 @@ export default function Footer({ settings }: FooterProps) {
                     {/* About OFHM */}
                     <div className="space-y-6">
                         <div className="space-y-4">
-                            <Image
-                                src="/branding/ofhm-logo-mark.png"
-                                alt="OFHM Emblem"
-                                width={60}
-                                height={60}
-                                className="h-14 w-auto object-contain"
-                            />
+
                             <Image
                                 src="/branding/ofhm-logo-full.png"
                                 alt="OFHM Full Logo"
