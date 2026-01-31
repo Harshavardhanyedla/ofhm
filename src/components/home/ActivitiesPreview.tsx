@@ -14,7 +14,7 @@ const fallbackFeatured = [
     {
         title: "Old Age & Homeless Widows Care",
         slug: "widow-care",
-        images: ["/images/widow-care.png"],
+        images: ["/images/widow-care-v2.jpg"],
         shortDescription: "Restoring dignity and providing shelter, food, and medical care to elderly widows.",
     },
     {
