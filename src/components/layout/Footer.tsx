@@ -62,17 +62,9 @@ export default function Footer({ settings }: FooterProps) {
                             {summary}
                         </p>
                         <div className="flex space-x-4">
-                            <Link href="#" className="text-foreground/50 hover:text-primary transition-colors">
-                                <Facebook className="h-5 w-5" />
-                            </Link>
-                            <Link href="#" className="text-foreground/50 hover:text-primary transition-colors">
-                                <Instagram className="h-5 w-5" />
-                            </Link>
-                            <Link href="#" className="text-foreground/50 hover:text-primary transition-colors">
-                                <Twitter className="h-5 w-5" />
-                            </Link>
-                            <Link href="#" className="text-foreground/50 hover:text-primary transition-colors">
+                            <Link href="https://www.youtube.com/@Kingsalmon-G" target="_blank" rel="noopener noreferrer" className="text-foreground/50 hover:text-primary transition-colors flex items-center gap-2">
                                 <Youtube className="h-5 w-5" />
+                                <span className="text-xs font-bold uppercase tracking-wider">YouTube Channel</span>
                             </Link>
                         </div>
                     </div>
