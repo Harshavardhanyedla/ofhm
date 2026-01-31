@@ -50,13 +50,13 @@ const fallbackFeatured = [
     {
         title: "Church Plantation",
         slug: "church-plantation",
-        images: ["/images/church-plantation.png"],
+        images: ["/images/church-plantation-v2.jpg"],
         shortDescription: "Establishing vibrant spiritual communities in areas with no gospel presence.",
     },
     {
         title: "Food & Clothes Distribution",
         slug: "food-clothes-distribution",
-        images: ["/images/food-distribution.png"],
+        images: ["/images/food-distribution-v2.jpg"],
         shortDescription: "Meeting immediate physical needs of the poor with regular food and clothing drives.",
     },
     {
