@@ -26,7 +26,7 @@ const fallbackFeatured = [
     {
         title: "Outreach to Unreached Tribal Villages",
         slug: "tribal-outreach",
-        images: ["/images/tribal-outreach-v3.png"],
+        images: ["/images/tribal-outreach-v4.jpg"],
         shortDescription: "Taking the message of hope to the most remote and marginalized tribal communities.",
     },
     {
