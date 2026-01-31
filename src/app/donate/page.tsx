@@ -67,13 +67,6 @@ export default function DonatePage() {
             <div className="w-full">
                 {/* ... (Existing sections) ... */}
 
-                {/* Visual Debug Section (Temporary) */}
-                <div className="bg-gray-100 p-4 text-xs font-mono break-all text-left mt-8 container mx-auto rounded">
-                    <p><strong>Debug Info:</strong></p>
-                    <p>Client ID Loaded: {initialOptions.clientId ? "YES" : "NO"} ({initialOptions.clientId?.substring(0, 4)}...)</p>
-                    <p>Currency: {initialOptions.currency}</p>
-                    {debugError && <p className="text-red-600 font-bold mt-2">LAST ERROR: {debugError}</p>}
-                </div>
 
                 {/* Header */}
                 <section className="bg-muted py-24 pb-12">
