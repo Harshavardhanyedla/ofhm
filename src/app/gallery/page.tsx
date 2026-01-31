@@ -5,6 +5,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
 const galleryImages = [
+    { src: '/images/gallery-youth-gathering.jpg', title: 'Youth Gathering' },
+    { src: '/images/gallery-widow-care-visit.jpg', title: 'Widow Visit' },
+    { src: '/images/gallery-orphan-winter-care.png', title: 'Orphan Winter Care' },
+    { src: '/images/gallery-pastors-conference.png', title: 'Pastors Conference' },
     { src: '/images/orphan-care-v2.jpg', title: 'Orphan Care Mission' },
     { src: '/images/widow-care-v3.jpg', title: 'Widow Support' },
     { src: '/images/discipleship-v2.png', title: 'Discipleship Training' },
