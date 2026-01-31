@@ -56,7 +56,7 @@ const fallbackFeatured = [
     {
         title: "Food & Clothes Distribution",
         slug: "food-clothes-distribution",
-        images: ["/images/food-distribution-v2.jpg"],
+        images: ["/images/food-distribution-v3.jpg"],
         shortDescription: "Meeting immediate physical needs of the poor with regular food and clothing drives.",
     },
     {
