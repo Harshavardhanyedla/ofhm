@@ -36,29 +36,9 @@ export default function DonatePage() {
     const initialFund = searchParams.get("fund") || "general";
 
     const [amount, setAmount] = useState<number | string>(25);
-    const [activeFunds, setActiveFunds] = useState(defaultFunds);
-    const [selectedFund, setSelectedFund] = useState(initialFund);
+    const [selectedFund] = useState("general");
     const [step, setStep] = useState(1);
     const [donorInfo, setDonorInfo] = useState({ name: "", email: "" });
-
-    useEffect(() => {
-        const fetchActivities = async () => {
-            try {
-                const res = await fetch("/api/activities");
-                const data = await res.json();
-                if (data && data.length > 0) {
-                    const dynamicFunds = [
-                        { id: "general", name: "General Fund" },
-                        ...data.map((act: any) => ({ id: act.slug, name: act.title }))
-                    ];
-                    setActiveFunds(dynamicFunds);
-                }
-            } catch (error) {
-                console.error("Failed to fetch dynamic funds:", error);
-            }
-        };
-        fetchActivities();
-    }, []);
 
     const handleAmountSelect = (val: number) => {
         setAmount(val);
@@ -145,21 +125,6 @@ export default function DonatePage() {
                                             exit={{ opacity: 0, x: -20 }}
                                             className="space-y-8"
                                         >
-                                            <div className="space-y-4">
-                                                <label className="text-xs font-bold uppercase tracking-widest text-foreground/40">Select Fund</label>
-                                                <div className="grid grid-cols-1 gap-3">
-                                                    {activeFunds.map((f: any) => (
-                                                        <button
-                                                            key={f.id}
-                                                            onClick={() => setSelectedFund(f.id)}
-                                                            className={`p-4 rounded-2xl text-left transition-all border ${selectedFund === f.id ? "bg-primary/5 border-primary text-primary" : "bg-muted/30 border-transparent text-foreground/60"
-                                                                }`}
-                                                        >
-                                                            <span className="font-medium">{f.name}</span>
-                                                        </button>
-                                                    ))}
-                                                </div>
-                                            </div>
 
                                             <div className="space-y-4">
                                                 <label className="text-xs font-bold uppercase tracking-widest text-foreground/40">Amount (USD)</label>
@@ -260,7 +225,6 @@ export default function DonatePage() {
                                             <div className="text-center space-y-2">
                                                 <p className="text-sm font-bold uppercase tracking-widest text-primary">Summary</p>
                                                 <h3 className="text-4xl font-serif text-secondary group">${amount}</h3>
-                                                <p className="text-foreground/60">Supporting <span className="text-foreground font-medium">{activeFunds.find((f: any) => f.id === selectedFund)?.name}</span></p>
                                             </div>
 
                                             <div className="space-y-6">
@@ -276,7 +240,7 @@ export default function DonatePage() {
                                                                     headers: { "Content-Type": "application/json" },
                                                                     body: JSON.stringify({
                                                                         amount: formattedAmount,
-                                                                        description: `Donation to OFHM - ${activeFunds.find((f: any) => f.id === selectedFund)?.name}`
+                                                                        description: `Donation to OFHM`
                                                                     }),
                                                                 });
 
