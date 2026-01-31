@@ -27,6 +27,7 @@ const initialOptions = {
     currency: "USD",
     intent: "capture",
     components: "buttons", // Explicitly request buttons component
+    "environment": (process.env.NEXT_PUBLIC_PAYPAL_MODE === "live" ? "production" : "sandbox") as "production" | "sandbox",
 };
 
 export default function DonatePage() {
