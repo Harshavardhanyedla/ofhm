@@ -124,10 +124,7 @@ export default function Footer({ settings }: FooterProps) {
                 {/* Bottom Bar */}
                 <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-xs text-foreground/50">
                     <p>© {new Date().getFullYear()} Our Father Home Ministries. All rights reserved.</p>
-                    <div className="flex space-x-6">
-                        <Link href="/privacy" className="hover:text-primary">Privacy Policy</Link>
-                        <Link href="/terms" className="hover:text-primary">Terms of Service</Link>
-                    </div>
+
                 </div>
             </div>
         </footer>
