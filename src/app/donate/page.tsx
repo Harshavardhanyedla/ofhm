@@ -27,10 +27,8 @@ const initialOptions = {
     currency: "USD",
     intent: "capture",
     components: "buttons",
-    // Synchronize mode with backend logic
-    "environment": (process.env.NEXT_PUBLIC_PAYPAL_MODE === "live" ||
-        (!process.env.NEXT_PUBLIC_PAYPAL_MODE && process.env.NODE_ENV === "production"))
-        ? "production" : "sandbox" as "production" | "sandbox",
+    // Force environment to production for live payments
+    "environment": "production" as "production",
 };
 
 export default function DonatePage() {

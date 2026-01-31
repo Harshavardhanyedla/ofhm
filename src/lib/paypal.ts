@@ -4,12 +4,10 @@ import https from "https";
 const PAYPAL_CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID;
 const PAYPAL_CLIENT_SECRET = process.env.PAYPAL_CLIENT_SECRET;
 
-// Determine environment: Default to sandbox unless explicitly set to 'live'
-// We prioritize NEXT_PUBLIC_PAYPAL_MODE, otherwise we detect from NODE_ENV
-const PAYPAL_MODE = (process.env.NEXT_PUBLIC_PAYPAL_MODE as "sandbox" | "live") ||
-    (process.env.NODE_ENV === "production" ? "live" : "sandbox");
+// Force environment to 'live' for production payments only
+const PAYPAL_MODE = "live";
 
-console.log(`[PayPal] Initializing in ${PAYPAL_MODE} mode`);
+console.log(`[PayPal] Hard-coded to ${PAYPAL_MODE} mode`);
 
 const BASE_URL = PAYPAL_MODE === "live"
     ? "https://api-m.paypal.com"
