@@ -49,7 +49,7 @@ const fallbackActivities = [
     {
         title: "Free Bible Distributions",
         slug: "bible-distribution",
-        images: ["/images/bible-distribution.png"],
+        images: ["/images/bible-distribution-v2.jpg"],
         shortDescription: "Placing the Word of God in the hands of those who have never owned a Bible.",
     },
     {

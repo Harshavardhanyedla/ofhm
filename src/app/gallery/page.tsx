@@ -5,6 +5,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
 const galleryImages = [
+    { src: '/images/gallery-children-v2.jpg', title: 'Children Home' },
+    { src: '/images/gallery-gathering-v2.png', title: 'Community Gathering' },
+    { src: '/images/gallery-conference-v2.jpg', title: 'Leaders Conference' },
     { src: '/images/gallery-youth-gathering.jpg', title: 'Youth Gathering' },
     { src: '/images/gallery-widow-care-visit.jpg', title: 'Widow Visit' },
     { src: '/images/gallery-orphan-winter-care.png', title: 'Orphan Winter Care' },
