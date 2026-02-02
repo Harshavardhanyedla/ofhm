@@ -17,7 +17,7 @@ const galleryImages = [
     { src: '/images/discipleship-v2.png', title: 'Discipleship Training' },
     { src: '/images/tribal-outreach-v5.jpg', title: 'Tribal Outreach' },
     { src: '/images/eye-medical-care-v3.png', title: 'Eye Medical Camp' },
-    { src: '/images/bible-distribution.png', title: 'Bible Distribution' },
+    { src: '/images/bible-distribution-v2.jpg', title: 'Bible Distribution' },
     { src: '/images/borewell-projects.png', title: 'Borewell Projects' },
     { src: '/images/church-plantation-v3.png', title: 'Church Plantation' },
     { src: '/images/food-distribution-v3.jpg', title: 'Food Distribution' },
