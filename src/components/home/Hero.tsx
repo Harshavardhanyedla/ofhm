@@ -55,7 +55,7 @@ export default function Hero({ statements }: HeroProps) {
                     className="flex flex-col md:flex-row gap-6 justify-center"
                 >
                     <Link
-                        href="/donate"
+                        href="https://www.ofhmindia.org/page/"
                         className="px-10 py-5 bg-white text-secondary rounded-full font-bold text-lg hover:bg-primary hover:text-white transition-all shadow-2xl flex items-center justify-center"
                     >
                         Support Our Mission

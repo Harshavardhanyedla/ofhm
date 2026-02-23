@@ -126,7 +126,7 @@ function ActivityContent({ activity }: { activity: any }) {
 
                                     <div className="pt-8 border-t border-muted space-y-4">
                                         <Link
-                                            href={`/donate?fund=${activity.slug}`}
+                                            href="https://www.ofhmindia.org/page/"
                                             className="w-full py-5 bg-primary text-white rounded-full flex items-center justify-center gap-2 text-lg font-medium shadow-xl shadow-primary/20 hover:scale-[1.02] transition-all"
                                         >
                                             <Heart className="h-5 w-5" /> Support This Activity

@@ -71,7 +71,7 @@ export default function Header() {
                             </Link>
                         ))}
                         <Link
-                            href="/donate"
+                            href="https://www.ofhmindia.org/page/"
                             className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-2 text-sm font-medium text-primary-foreground transition-all hover:scale-105 active:scale-95 shadow-sm"
                         >
                             <Heart className="mr-2 h-4 w-4" />
@@ -108,7 +108,7 @@ export default function Header() {
                             </Link>
                         ))}
                         <Link
-                            href="/donate"
+                            href="https://www.ofhmindia.org/page/"
                             className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-lg font-medium text-primary-foreground"
                             onClick={() => setIsOpen(false)}
                         >

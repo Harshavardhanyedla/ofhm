@@ -158,7 +158,7 @@ export default async function ActivitiesPage() {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link
-                            href="/donate"
+                            href="https://www.ofhmindia.org/page/"
                             className="bg-primary text-white px-10 py-5 rounded-full text-lg font-medium hover:scale-105 active:scale-95 transition-all shadow-xl shadow-primary/20"
                         >
                             Support Our Work

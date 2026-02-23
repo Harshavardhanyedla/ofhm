@@ -64,7 +64,7 @@ export default function MinistriesClient({ ministries }: { ministries: Ministry[
                                         <p className="text-xl font-serif text-secondary font-bold">{ministry.impactSummary}</p>
                                     </div>
                                     <Link
-                                        href={`/donate?fund=${ministry.id}`}
+                                        href="https://www.ofhmindia.org/page/"
                                         className="inline-flex items-center justify-center rounded-full bg-secondary px-10 py-5 text-base font-bold text-white transition-all hover:bg-primary hover:scale-105 shadow-xl shadow-secondary/20"
                                     >
                                         Support this Ministry

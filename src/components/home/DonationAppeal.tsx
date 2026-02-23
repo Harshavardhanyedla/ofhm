@@ -19,7 +19,7 @@ export default function DonationAppeal() {
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-4">
                             <Link
-                                href="/donate"
+                                href="https://www.ofhmindia.org/page/"
                                 className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-primary px-10 py-5 text-lg font-medium text-primary-foreground transition-all hover:bg-primary/90 hover:scale-105 active:scale-95 shadow-2xl"
                             >
                                 <Heart className="mr-3 h-6 w-6 fill-current" />

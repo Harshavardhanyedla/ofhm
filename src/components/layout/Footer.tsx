@@ -69,7 +69,10 @@ export default function Footer({ settings }: FooterProps) {
                         <ul className="space-y-2">
                             {['Home', 'About', 'Gallery', 'Sermons', 'Contact', 'Donate'].map((link) => (
                                 <li key={link}>
-                                    <Link href={`/${link.toLowerCase() === 'home' ? '' : link.toLowerCase()}`} className="text-sm text-foreground/70 hover:text-primary transition-colors">
+                                    <Link
+                                        href={link.toLowerCase() === 'donate' ? 'https://www.ofhmindia.org/page/' : `/${link.toLowerCase() === 'home' ? '' : link.toLowerCase()}`}
+                                        className="text-sm text-foreground/70 hover:text-primary transition-colors"
+                                    >
                                         {link}
                                     </Link>
                                 </li>

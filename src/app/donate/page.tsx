@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { ShieldCheck, DollarSign, CheckCircle2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 // import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
@@ -35,7 +35,12 @@ export default function DonatePage() {
     const searchParams = useSearchParams();
     const initialFund = searchParams.get("fund") || "general";
 
+    const router = useRouter();
     const [amount, setAmount] = useState<number | string>(25);
+
+    useEffect(() => {
+        router.replace("https://www.ofhmindia.org/page/");
+    }, [router]);
     const [selectedFund] = useState("general");
     const [step, setStep] = useState(1);
     const [donorInfo, setDonorInfo] = useState({ name: "", email: "" });
