@@ -11,13 +11,17 @@ const formSchema = z.object({
     email: z.string().email("Invalid email address"),
     subject: z.string().min(5, "Subject must be at least 5 characters"),
     message: z.string().min(10, "Message must be at least 10 characters"),
+    _honeypot: z.string().optional(),
 });
 
 type FormValues = z.infer<typeof formSchema>;
 
 export default function ContactForm() {
-    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormValues>({
+    const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<FormValues>({
         resolver: zodResolver(formSchema),
+        defaultValues: {
+            _honeypot: "",
+        }
     });
 
     const onSubmit = async (data: FormValues) => {
@@ -34,6 +38,7 @@ export default function ContactForm() {
 
             if (response.ok) {
                 alert("Thank you for your message! It has been sent to our team.");
+                reset();
             } else {
                 throw new Error(result.error || "Failed to send message");
             }
@@ -51,7 +56,18 @@ export default function ContactForm() {
             className="bg-white p-8 md:p-12 rounded-[3rem] shadow-2xl shadow-primary/5 border border-border/50"
         >
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                {/* Honeypot field - hidden from users but seen by bots */}
+                <div style={{ position: 'absolute', opacity: 0, zIndex: -1, pointerEvents: 'none' }}>
+                    <input
+                        {...register("_honeypot")}
+                        type="text"
+                        tabIndex={-1}
+                        autoComplete="off"
+                    />
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
                     <div className="space-y-2">
                         <label className="text-xs font-bold uppercase tracking-widest text-foreground/40 px-2">Full Name</label>
                         <input
